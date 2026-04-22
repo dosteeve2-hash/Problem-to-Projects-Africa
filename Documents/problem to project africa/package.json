@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
+    "vercel-build": "npm ci --prefer-offline --no-audit && next build",
     "start": "next start",
     "lint": "eslint ."
   },
@@ -22,7 +23,7 @@
     "@types/react": "^19.2.2",
     "@types/react-dom": "^19.2.2",
     "eslint": "^9.36.0",
-    "eslint-config-next": "16.1.6",
+    "eslint-config-next": "^16.2.4",
     "postcss": "^8.5.6",
     "tailwindcss": "^4.1.8",
     "typescript": "^5.9.3"

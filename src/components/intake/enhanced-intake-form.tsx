@@ -201,14 +201,13 @@ export function EnhancedIntakeForm({ mode }: EnhancedIntakeFormProps) {
             <Label>Secteur d'activité</Label>
             <Select
               value={formData.sector}
-              onValueChange={(value) =>
-                setFormData({ ...formData, sector: value })
+              onChange={(e) =>
+                setFormData({ ...formData, sector: e.target.value })
               }
             >
-              <SelectTrigger className={errors.sector ? "border-red-500" : ""}>
-                <SelectValue placeholder="Sélectionnez un secteur" />
-              </SelectTrigger>
-              <SelectContent>
+              <SelectItem value="" disabled>
+                Sélectionnez un secteur
+              </SelectItem>
                 <SelectItem value="agriculture">Agriculture</SelectItem>
                 <SelectItem value="education">Éducation</SelectItem>
                 <SelectItem value="sante">Santé</SelectItem>
@@ -217,7 +216,6 @@ export function EnhancedIntakeForm({ mode }: EnhancedIntakeFormProps) {
                 <SelectItem value="tech">Technologie</SelectItem>
                 <SelectItem value="artisanat">Artisanat</SelectItem>
                 <SelectItem value="autre">Autre</SelectItem>
-              </SelectContent>
             </Select>
             {errors.sector && <p className="text-red-500 text-sm mt-1">{errors.sector}</p>}
           </div>

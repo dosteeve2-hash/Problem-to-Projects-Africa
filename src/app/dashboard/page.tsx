@@ -2,6 +2,7 @@ import Link from "next/link";
 
 import { SiteHeader } from "@/components/marketing/site-header";
 import { SiteFooter } from "@/components/marketing/site-footer";
+import { DashboardInteractive } from "@/components/dashboard/dashboard-interactive";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 
 export default async function DashboardPage() {
@@ -16,6 +17,7 @@ export default async function DashboardPage() {
       mode,
       country,
       region,
+      input_payload,
       created_at,
       project_recommendations (
         id,
@@ -46,7 +48,7 @@ export default async function DashboardPage() {
             Historique des recommandations.
           </h1>
           <p className="max-w-2xl text-base leading-8 text-muted">
-            Retrouve toutes tes recommandations de projets generees precedemment.
+            Retrouve toutes tes recommandations de projets generees precedemment. Tu peux modifier les parametres et re-generer pour obtenir de meilleures recommandations.
           </p>
         </div>
 
@@ -68,20 +70,8 @@ export default async function DashboardPage() {
               </Link>
             </div>
           ) : (
-            <div className="grid gap-4">
-              {sessions.map((session) => {
-                const rec = (
-                  session.project_recommendations as Array<{
-                    id: string;
-                    title: string;
-                    concept: string;
-                    feasibility_level: string;
-                    cost_level: string;
-                    complexity_level: string;
-                    mvp_summary: string;
-                    next_step: string;
-                  }>
-                )?.[0];
+            <div className="grid gap-8">
+              {sessions.map((session: any) => {
                 const date = new Date(session.created_at).toLocaleDateString(
                   "fr-FR",
                   {
@@ -94,30 +84,15 @@ export default async function DashboardPage() {
                 );
 
                 return (
-                  <article
-                    key={session.id}
-                    className="flex flex-col gap-4 rounded-[28px] border border-border bg-card p-6 shadow-[var(--shadow)] sm:flex-row sm:items-center sm:justify-between"
-                  >
-                    <div className="min-w-0 flex-1">
-                      <div className="flex flex-wrap items-center gap-2">
-                        <span className="rounded-full border border-accent/20 bg-accent-soft px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-accent">
-                          {session.mode} mode
-                        </span>
-                        <span className="text-xs text-muted">{date}</span>
-                      </div>
-                      <h2 className="mt-2 text-xl font-semibold text-foreground">
-                        {rec?.title ?? "Recommandation"}
-                      </h2>
-                      <p className="mt-1 line-clamp-2 text-sm leading-7 text-muted">
-                        {rec?.concept ?? ""}
-                      </p>
-                    </div>
-                    <div className="flex shrink-0 gap-3">
-                      <span className="inline-flex rounded-full border border-primary/20 bg-white/80 px-4 py-2 text-xs font-semibold text-primary">
-                        {rec?.feasibility_level ?? session.mode}
+                  <div key={session.id} className="space-y-3">
+                    <div className="flex flex-wrap items-center gap-2">
+                      <span className="rounded-full border border-accent/20 bg-accent-soft px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-accent">
+                        {session.mode} mode
                       </span>
+                      <span className="text-xs text-muted">{date}</span>
                     </div>
-                  </article>
+                    <DashboardInteractive session={session} />
+                  </div>
                 );
               })}
             </div>

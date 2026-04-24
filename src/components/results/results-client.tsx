@@ -3,11 +3,13 @@
 import { useSyncExternalStore } from "react";
 import Link from "next/link";
 
+import { SaveProjectButton } from "@/components/results/save-project-button";
 import type { RecommendationResult } from "@/lib/types/recommendation";
 
 type StoredResult = {
   result: RecommendationResult;
   generatedAt: string;
+  sessionId: string;
 };
 
 export function ResultsClient() {
@@ -43,43 +45,49 @@ export function ResultsClient() {
     );
   }
 
-  const { result } = payload;
+  const { result, sessionId } = payload;
   const { recommendedProject } = result;
 
   return (
     <div className="grid gap-8">
-      <Link
-        href={`/project/${recommendedProject.id}`}
-        className="block rounded-[36px] border border-border bg-card p-8 shadow-[var(--shadow)] transition-shadow hover:shadow-[0_20px_60px_rgba(46,32,17,0.16)]"
-      >
-        <p className="text-xs font-semibold uppercase tracking-[0.24em] text-accent">
-          Recommended project
-        </p>
-        <h1 className="mt-3 text-4xl font-semibold text-foreground transition-colors hover:text-primary sm:text-5xl">
-          {recommendedProject.title}
-        </h1>
-        <p className="mt-5 max-w-3xl text-lg leading-8 text-muted">{recommendedProject.concept}</p>
-        <div className="mt-8 grid gap-4 md:grid-cols-3">
-          <div className="rounded-[24px] bg-white/80 p-5">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">Feasibility</p>
-            <p className="mt-2 text-base font-semibold text-foreground">
-              {recommendedProject.feasibilityLevel}
-            </p>
+      <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+        <Link
+          href={`/project/${recommendedProject.id}`}
+          className="flex-1 block rounded-[36px] border border-border bg-card p-8 shadow-[var(--shadow)] transition-shadow hover:shadow-[0_20px_60px_rgba(46,32,17,0.16)]"
+        >
+          <p className="text-xs font-semibold uppercase tracking-[0.24em] text-accent">
+            Recommended project
+          </p>
+          <h1 className="mt-3 text-4xl font-semibold text-foreground transition-colors hover:text-primary sm:text-5xl">
+            {recommendedProject.title}
+          </h1>
+          <p className="mt-5 max-w-3xl text-lg leading-8 text-muted">{recommendedProject.concept}</p>
+          <div className="mt-8 grid gap-4 md:grid-cols-3">
+            <div className="rounded-[24px] bg-white/80 p-5">
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">Feasibility</p>
+              <p className="mt-2 text-base font-semibold text-foreground">
+                {recommendedProject.feasibilityLevel}
+              </p>
+            </div>
+            <div className="rounded-[24px] bg-white/80 p-5">
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">Cost</p>
+              <p className="mt-2 text-base font-semibold text-foreground">
+                {recommendedProject.costLevel}
+              </p>
+            </div>
+            <div className="rounded-[24px] bg-white/80 p-5">
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">Complexity</p>
+              <p className="mt-2 text-base font-semibold text-foreground">
+                {recommendedProject.complexityLevel}
+              </p>
+            </div>
           </div>
-          <div className="rounded-[24px] bg-white/80 p-5">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">Cost</p>
-            <p className="mt-2 text-base font-semibold text-foreground">
-              {recommendedProject.costLevel}
-            </p>
-          </div>
-          <div className="rounded-[24px] bg-white/80 p-5">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">Complexity</p>
-            <p className="mt-2 text-base font-semibold text-foreground">
-              {recommendedProject.complexityLevel}
-            </p>
-          </div>
+        </Link>
+
+        <div className="sm:w-64">
+          <SaveProjectButton result={result} sessionId={sessionId} />
         </div>
-      </Link>
+      </div>
 
       <section className="grid gap-8 lg:grid-cols-[1.2fr_0.8fr]">
         <div className="rounded-[36px] border border-border bg-card p-8 shadow-[var(--shadow)]">

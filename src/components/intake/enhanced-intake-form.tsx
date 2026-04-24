@@ -7,10 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import {
   Select,
-  SelectContent,
   SelectItem,
-  SelectTrigger,
-  SelectValue,
 } from "@/components/ui/select";
 import { Card } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -252,18 +249,13 @@ export function EnhancedIntakeForm({ mode }: EnhancedIntakeFormProps) {
                 <Label>Niveau de compétence</Label>
                 <Select
                   value={formData.skillsLevel}
-                  onValueChange={(value: any) =>
-                    setFormData({ ...formData, skillsLevel: value })
+                  onChange={(e: any) =>
+                    setFormData({ ...formData, skillsLevel: e.target.value })
                   }
                 >
-                  <SelectTrigger>
-                    <SelectValue />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="beginner">Débutant</SelectItem>
-                    <SelectItem value="intermediate">Intermédiaire</SelectItem>
-                    <SelectItem value="advanced">Avancé</SelectItem>
-                  </SelectContent>
+                  <SelectItem value="beginner">Débutant</SelectItem>
+                  <SelectItem value="intermediate">Intermédiaire</SelectItem>
+                  <SelectItem value="advanced">Avancé</SelectItem>
                 </Select>
               </div>
 
@@ -423,18 +415,13 @@ export function EnhancedIntakeForm({ mode }: EnhancedIntakeFormProps) {
             <Label>Temps disponible</Label>
             <Select
               value={formData.timeAvailable}
-              onValueChange={(value: any) =>
-                setFormData({ ...formData, timeAvailable: value })
+              onChange={(e: any) =>
+                setFormData({ ...formData, timeAvailable: e.target.value })
               }
             >
-              <SelectTrigger>
-                <SelectValue />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="weekends">Weekends uniquement</SelectItem>
-                <SelectItem value="part-time">Temps partiel</SelectItem>
-                <SelectItem value="full-time">Temps plein</SelectItem>
-              </SelectContent>
+              <SelectItem value="weekends">Weekends uniquement</SelectItem>
+              <SelectItem value="part-time">Temps partiel</SelectItem>
+              <SelectItem value="full-time">Temps plein</SelectItem>
             </Select>
           </div>
 
@@ -488,19 +475,10 @@ export function EnhancedIntakeForm({ mode }: EnhancedIntakeFormProps) {
             <Label>Objectif principal</Label>
             <Select
               value={formData.goal}
-              onValueChange={(value: any) =>
-                setFormData({ ...formData, goal: value })
+              onChange={(e: any) =>
+                setFormData({ ...formData, goal: e.target.value })
               }
             >
-              <SelectTrigger>
-                <SelectValue />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="income">Générer des revenus</SelectItem>
-                <SelectItem value="impact">Créer un impact social</SelectItem>
-                <SelectItem value="learning">Apprendre et développer</SelectItem>
-                <SelectItem value="growth">Croissance personnelle</SelectItem>
-              </SelectContent>
             </Select>
           </div>
 
@@ -508,19 +486,10 @@ export function EnhancedIntakeForm({ mode }: EnhancedIntakeFormProps) {
             <Label>Délai souhaité</Label>
             <Select
               value={formData.timeframe}
-              onValueChange={(value: any) =>
-                setFormData({ ...formData, timeframe: value })
+              onChange={(e: any) =>
+                setFormData({ ...formData, timeframe: e.target.value })
               }
             >
-              <SelectTrigger>
-                <SelectValue />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="3-months">3 mois</SelectItem>
-                <SelectItem value="6-months">6 mois</SelectItem>
-                <SelectItem value="1-year">1 an</SelectItem>
-                <SelectItem value="2-years">2 ans</SelectItem>
-              </SelectContent>
             </Select>
           </div>
 

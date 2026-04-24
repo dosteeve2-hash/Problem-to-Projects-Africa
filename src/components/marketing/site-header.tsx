@@ -26,7 +26,11 @@ export function SiteHeader() {
         {/* Desktop nav */}
         <nav className="hidden items-center gap-6 text-sm text-muted md:flex">
           {NAV_LINKS.map((link) => (
-            <Link key={link.href} href={link.href}>
+            <Link 
+              key={link.href} 
+              href={link.href}
+              className="transition-colors hover:text-foreground"
+            >
               {link.label}
             </Link>
           ))}
@@ -36,8 +40,9 @@ export function SiteHeader() {
         {/* Mobile toggle */}
         <button
           onClick={() => setOpen(!open)}
-          className="flex h-9 w-9 items-center justify-center rounded-xl border border-border bg-white/80 md:hidden"
+          className="flex h-9 w-9 items-center justify-center rounded-xl border border-border bg-white/80 transition-colors hover:bg-white md:hidden"
           aria-label="Menu"
+          aria-expanded={open}
         >
           <svg width="18" height="18" viewBox="0 0 18 18" fill="none" className="text-foreground">
             {open ? (
@@ -52,25 +57,27 @@ export function SiteHeader() {
       </div>
 
       {/* Mobile menu */}
-      {open ? (
+      {open && (
         <div className="border-t border-border/70 bg-background/95 backdrop-blur-xl md:hidden">
-          <nav className="mx-auto flex max-w-6xl flex-col gap-1 px-6 py-4">
+          <nav className="mx-auto flex max-w-6xl flex-col gap-0 px-6 py-3">
             {NAV_LINKS.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
                 onClick={() => setOpen(false)}
-                className="rounded-2xl px-4 py-3 text-sm font-medium text-foreground transition-colors hover:bg-white/60"
+                className="rounded-xl px-4 py-3 text-sm font-medium text-foreground transition-all hover:bg-white/70 active:bg-white/50"
               >
                 {link.label}
               </Link>
             ))}
-            <div className="mt-2 border-t border-border pt-4 pl-4">
-              <AuthButton />
+            <div className="border-t border-border/50 pt-3 mt-2">
+              <div className="px-4 py-2">
+                <AuthButton />
+              </div>
             </div>
           </nav>
         </div>
-      ) : null}
+      )}
     </header>
   );
 }

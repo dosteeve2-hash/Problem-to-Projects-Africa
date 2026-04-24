@@ -13,7 +13,8 @@ import type {
   IdeaModeInput,
   SkillsModeInput,
 } from "@/components/intake/differentiated-intake-forms";
-import { BURKINA_FASO_DATABASE } from "@/lib/data/burkina-faso-database";
+import { BurkinaFasoDatabase } from "@/lib/data/burkina-faso-database";
+const BURKINA_FASO_DATABASE = BurkinaFasoDatabase;
 
 interface EnhancedAnalysisInput {
   mode: "skills" | "idea" | "problem";

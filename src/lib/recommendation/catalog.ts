@@ -158,7 +158,7 @@ export const projectCatalog: ProjectTemplate[] = [
     tags: ["contenu", "offline", "enseignant", "programme"],
   },
 
-  // ─── Sante / Health ────────────────────────────────────────
+  // ─── Sante ─────────────────────────────────────────────────
   {
     id: "health-appointment",
     sector: "Sante",
@@ -440,5 +440,270 @@ export const projectCatalog: ProjectTemplate[] = [
     nextStep:
       "Identifier un axe routier frequent (ex: Ouaga-Bobo) et interviewer 5 transporteurs sur leurs trajets a vide.",
     tags: ["transport", "matching", "marchandise", "inter-urbain", "optimisation"],
+  },
+
+  // ─── Eau et Assainissement ─────────────────────────────────
+  {
+    id: "eau-maintenance-puits",
+    sector: "Eau et Assainissement",
+    mode: "problem",
+    title: "Suivi de maintenance des puits communautaires",
+    concept:
+      "Un outil de signalement et de suivi des pannes de puits pour accelerer les interventions de maintenance.",
+    problem:
+      "Les puits en panne restent souvent inutilisables pendant des semaines faute de coordination de maintenance.",
+    localRelevance:
+      "L'acces a l'eau potable est critique au Burkina Faso. Un suivi efficace des puits sauve du temps et de l'argent.",
+    mvpSummary:
+      "Un formulaire de signalement par SMS + un tableau de bord pour un coordinateur de maintenance par zone.",
+    topFeatures: [
+      "Signalement de panne par SMS",
+      "Tableau de bord des puits en panne",
+      "Historique de maintenance",
+    ],
+    skillsToLearn: ["Maintenance d'infrastructure", "Coordination de terrain", "Gestion de donnees"],
+    nextStep:
+      "Rencontrer un coordinateur de maintenance d'eau pour cartographier le processus actuel de signalement.",
+    tags: ["eau", "puits", "maintenance", "sms", "rural"],
+  },
+  {
+    id: "eau-collecte-pluie",
+    sector: "Eau et Assainissement",
+    mode: "idea",
+    title: "Guide de collecte d'eau de pluie pour menages",
+    concept:
+      "Un guide pratique et des plans pour construire des systemes simples de collecte d'eau de pluie adaptes aux menages burkinabes.",
+    problem:
+      "Beaucoup de menages ont des toits mais ne savent pas comment collecter l'eau de pluie de maniere simple et hygenique.",
+    localRelevance:
+      "La collecte d'eau de pluie est une solution complementaire realiste au Burkina Faso, surtout pendant la saison des pluies.",
+    mvpSummary:
+      "Un guide PDF illustre + 3 plans de construction + une liste de materiel local pour 3 niveaux de complexite.",
+    topFeatures: [
+      "Plans de construction illustres",
+      "Liste de materiel local",
+      "Conseils d'hygiene",
+    ],
+    skillsToLearn: ["Design technique", "Communication visuelle", "Hygiene de l'eau"],
+    nextStep:
+      "Visiter 5 menages et observer comment ils stockent l'eau actuellement pour adapter les plans.",
+    tags: ["eau", "pluie", "menage", "construction", "guide"],
+  },
+  {
+    id: "eau-latrines-hygienes",
+    sector: "Eau et Assainissement",
+    mode: "skills",
+    title: "Promoteur d'hygiene et latrines ameliorees",
+    concept:
+      "Former et equiper des promoteurs locaux pour construire et promouvoir les latrines ameliorees dans les villages.",
+    problem:
+      "L'absence de latrines ameliorees reste un probleme majeur de sante publique dans les zones rurales.",
+    localRelevance:
+      "Les promoteurs locaux sont la cle pour changer les comportements d'hygiene au Burkina Faso.",
+    mvpSummary:
+      "Former 5 promoteurs, leur fournir des outils et des plans, et suivre 20 constructions dans un village pilote.",
+    topFeatures: [
+      "Formation des promoteurs",
+      "Plans de latrine amelioree",
+      "Suivi de construction",
+    ],
+    skillsToLearn: ["Sante publique", "Promotion de comportement", "Suivi de projet"],
+    nextStep:
+      "Identifier un village cible et rencontrer l'autorite locale pour valider le besoin et le soutien.",
+    tags: ["hygiene", "latrine", "sante", "village", "comportement"],
+  },
+
+  // ─── Artisanat et Tourisme ─────────────────────────────────
+  {
+    id: "artisanat-showcase",
+    sector: "Artisanat et Tourisme",
+    mode: "idea",
+    title: "Plateforme de vitrine pour artisans locaux",
+    concept:
+      "Une plateforme simple pour que les artisans burkinabes showcasent et vendent leurs produits a des touristes et clients urbains.",
+    problem:
+      "Les artisans locaux ont du mal a atteindre les clients au-dela de leur marche local faute de visibilite.",
+    localRelevance:
+      "Le tourisme et l'artisanat sont des secteurs strategiques pour l'economie burkinabe.",
+    mvpSummary:
+      "Un site web simple avec photos de produits, WhatsApp contact, et une liste de lieux de vente.",
+    topFeatures: [
+      "Galerie de produits avec photos",
+      "Contact WhatsApp direct",
+      "Localisation des points de vente",
+    ],
+    skillsToLearn: ["Photography produit", "Web design simple", "Marketing artisanat"],
+    nextStep:
+      "Identifier 5 artisans locaux et leur demander comment ils vendent actuellement et ce qui les bloque.",
+    tags: ["artisanat", "tourisme", "vente", "web", "produit"],
+  },
+  {
+    id: "tourisme-guide-local",
+    sector: "Artisanat et Tourisme",
+    mode: "skills",
+    title: "Reseau de guides touristiques locaux",
+    concept:
+      "Structurer et promouvoir un reseau de guides touristiques locaux pour les touristes independants.",
+    problem:
+      "Les touristes ont du mal a trouver des guides locaux fiables et les guides manquent de visibilite.",
+    localRelevance:
+      "Le tourisme est une source de revenus pour les communautes locales au Burkina Faso.",
+    mvpSummary:
+      "Creer une liste de 10 guides, les former sur les standards de service, et les promouvoir via WhatsApp et TripAdvisor.",
+    topFeatures: [
+      "Repertoire de guides verifies",
+      "Avis et notations",
+      "Booking par WhatsApp",
+    ],
+    skillsToLearn: ["Service client", "Community management", "Tourisme local"],
+    nextStep:
+      "Contacter 5 guides independants et comprendre comment ils trouvent actuellement des clients.",
+    tags: ["tourisme", "guide", "communaute", "revenu", "local"],
+  },
+
+  // ─── Environnement et Reforestation ─────────────────────────
+  {
+    id: "environnement-reforestation",
+    sector: "Environnement",
+    mode: "problem",
+    title: "Suivi de campagnes de reforestation communautaire",
+    concept:
+      "Un outil pour suivre et coordonner les plantations d'arbres et leur survie dans les villages.",
+    problem:
+      "Les arbres plantes sont souvent perdus faute de suivi et de coordination de l'arrosage.",
+    localRelevance:
+      "La reforestation est une priorite nationale au Burkina Faso pour lutter contre la desertification.",
+    mvpSummary:
+      "Un carnet de plantation + un calendrier d'arrosage + un suivi mensuel de survie pour un village.",
+    topFeatures: [
+      "Enregistrement des plantations",
+      "Calendrier d'arrosage communautaire",
+      "Suivi de survie des arbres",
+    ],
+    skillsToLearn: ["Foresterie", "Coordination communautaire", "Suivi environnemental"],
+    nextStep:
+      "Rencontrer une ONG locale de reforestation pour comprendre leurs defis de suivi.",
+    tags: ["environnement", "arbre", "reforestation", "communaute", "suivi"],
+  },
+  {
+    id: "environnement-compost",
+    sector: "Environnement",
+    mode: "idea",
+    title: "Cooperative de compostage urbain",
+    concept:
+      "Un modele de collecte et compostage des dechets organiques urbains pour vendre du compost aux agriculteurs.",
+    problem:
+      "Les dechets organiques urbains sont gaspilles alors que les agriculteurs ont besoin de compost.",
+    localRelevance:
+      "Le compostage urbain peut creer des emplois et ameliorer la qualite des sols au Burkina Faso.",
+    mvpSummary:
+      "Collecter les dechets organiques de 5 restaurants, les composter dans un espace partage, et vendre le compost.",
+    topFeatures: [
+      "Collecte de dechets organiques",
+      "Compostage en tas",
+      "Vente de compost fini",
+    ],
+    skillsToLearn: ["Compostage", "Logistique de collecte", "Vente de produit"],
+    nextStep:
+      "Identifier un espace pour le compostage et 3 restaurants/marches sources de dechets organiques.",
+    tags: ["compost", "dechets", "urbain", "agriculture", "cooperative"],
+  },
+
+  // ─── Numerique et Inclusion ────────────────────────────────
+  {
+    id: "numerique-formation-femmes",
+    sector: "Numerique et Inclusion",
+    mode: "skills",
+    title: "Formation numerique pour femmes entrepreneurs",
+    concept:
+      "Un programme de formation adapte pour enseigner aux femmes entrepreneurs les outils numeriques essentiels (WhatsApp business, comptabilite simple, etc.).",
+    problem:
+      "Les femmes entrepreneurs manquent de competences numeriques pour developper leurs activites.",
+    localRelevance:
+      "L'inclusion numerique des femmes est une priorite pour l'economie burkinabe.",
+    mvpSummary:
+      "Un programme de 4 semaines avec 20 femmes, couvrant WhatsApp business, comptabilite mobile, et marketing simple.",
+    topFeatures: [
+      "Modules de formation pratiques",
+      "Mentorat personnalise",
+      "Groupe d'entraide post-formation",
+    ],
+    skillsToLearn: ["Pedagogie numerique", "Mentorat entrepreneurial", "Adaptation culturelle"],
+    nextStep:
+      "Identifier 3 associations de femmes entrepreneurs et leur proposer un pilot de formation.",
+    tags: ["numerique", "femmes", "formation", "entrepreneur", "inclusion"],
+  },
+  {
+    id: "numerique-cyber-cafe",
+    sector: "Numerique et Inclusion",
+    mode: "idea",
+    title: "Cyber-cafe communautaire avec services numeriques",
+    concept:
+      "Un cyber-cafe qui propose non seulement internet mais aussi des services numeriques (aide administrative, impression, scans, etc.).",
+    problem:
+      "Les cyber-cafes traditionnels sont peu rentables. Ajouter des services creeraient plus de valeur.",
+    localRelevance:
+      "Les cyber-cafes sont des points d'acces numerique essentiels dans les villes secondaires du Burkina Faso.",
+    mvpSummary:
+      "Un cyber-cafe existant qui ajoute 3 services: aide administrative, impression/scan, et recharge de telephone.",
+    topFeatures: [
+      "Acces internet rapide",
+      "Services d'impression et scan",
+      "Aide administrative simple",
+    ],
+    skillsToLearn: ["Operations cyber-cafe", "Service client", "Modele economique"],
+    nextStep:
+      "Visiter 3 cyber-cafes et demander quels services supplementaires leurs clients demandent.",
+    tags: ["cyber-cafe", "internet", "services", "urbain", "numerique"],
+  },
+
+  // ─── Sante Mentale et Bien-etre ────────────────────────────
+  {
+    id: "sante-mentale-groupe-soutien",
+    sector: "Sante Mentale et Bien-etre",
+    mode: "problem",
+    title: "Groupe de soutien par pairs pour sante mentale",
+    concept:
+      "Structurer des groupes de soutien par pairs pour les personnes souffrant de stress, anxiete ou depression.",
+    problem:
+      "La sante mentale est taboue au Burkina Faso et les personnes souffrent en silence faute de soutien accessible.",
+    localRelevance:
+      "Les groupes de soutien par pairs sont une approche culturellement adaptee et low-cost pour la sante mentale.",
+    mvpSummary:
+      "Lancer 2 groupes de 8 personnes avec un facilitateur forme, se reunissant hebdomadairement.",
+    topFeatures: [
+      "Reunions hebdomadaires structurees",
+      "Confidentialite assuree",
+      "Formation du facilitateur",
+    ],
+    skillsToLearn: ["Facilitation de groupe", "Sante mentale de base", "Ecoute active"],
+    nextStep:
+      "Rencontrer un psychologue ou travailleur social local pour concevoir le curriculum du groupe.",
+    tags: ["sante-mentale", "groupe", "soutien", "bien-etre", "pairs"],
+  },
+
+  // ─── Securite Alimentaire ──────────────────────────────────
+  {
+    id: "securite-alimentaire-stockage",
+    sector: "Securite Alimentaire",
+    mode: "skills",
+    title: "Outil de suivi des stocks alimentaires communautaires",
+    concept:
+      "Un outil simple pour suivre les stocks alimentaires communautaires et prevenir les crises de famine.",
+    problem:
+      "Les stocks alimentaires communautaires ne sont pas bien suivis, ce qui cree des risques de rupture.",
+    localRelevance:
+      "La securite alimentaire est une priorite majeure au Burkina Faso, surtout pendant la saison maigre.",
+    mvpSummary:
+      "Un registre papier + digital pour un grenier communautaire, avec alertes quand les stocks baissent.",
+    topFeatures: [
+      "Enregistrement des entrees/sorties",
+      "Suivi par type de denree",
+      "Alertes de stock bas",
+    ],
+    skillsToLearn: ["Gestion de stock", "Securite alimentaire", "Coordination communautaire"],
+    nextStep:
+      "Identifier un grenier communautaire et observer comment les stocks sont actuellement geres.",
+    tags: ["alimentation", "stock", "communaute", "securite", "rural"],
   },
 ];

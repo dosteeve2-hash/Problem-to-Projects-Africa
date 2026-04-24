@@ -1,43 +1,5 @@
 {
-  "buildCommand": "npm run build",
-  "devCommand": "npm run dev",
-  "installCommand": "npm install",
   "framework": "nextjs",
-  "env": [
-    {
-      "key": "NEXT_PUBLIC_SUPABASE_URL",
-      "description": "Supabase project URL",
-      "scope": ["production", "preview", "development"],
-      "target": ["production", "preview", "development"]
-    },
-    {
-      "key": "NEXT_PUBLIC_SUPABASE_ANON_KEY",
-      "description": "Supabase anonymous API key",
-      "scope": ["production", "preview", "development"],
-      "target": ["production", "preview", "development"]
-    },
-    {
-      "key": "AI_PROVIDER",
-      "description": "AI provider: claude, ollama, or empty for local",
-      "scope": ["production", "preview", "development"],
-      "target": ["production", "preview", "development"],
-      "value": ""
-    },
-    {
-      "key": "ANTHROPIC_API_KEY",
-      "description": "Anthropic API key (optional, only if using Claude)",
-      "scope": ["production", "preview", "development"],
-      "target": ["production", "preview", "development"]
-    },
-    {
-      "key": "OLLAMA_BASE_URL",
-      "description": "Ollama server URL (optional, only if using Ollama)",
-      "scope": ["production", "preview", "development"],
-      "target": ["production", "preview", "development"],
-      "value": "http://localhost:11434"
-    }
-  ],
-  "regions": ["sfo1"],
-  "public": false,
-  "buildOutputDirectory": ".next"
+  "buildCommand": "npm run build",
+  "installCommand": "npm install"
 }

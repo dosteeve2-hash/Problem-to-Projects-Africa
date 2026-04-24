@@ -5,19 +5,9 @@ import { createSupabaseServerClient } from "@/lib/supabase/server";
 import type { RecommendationInput } from "@/lib/types/recommendation";
 
 function isValidInput(body: Partial<RecommendationInput>) {
-  return Boolean(
-    body.country &&
-      body.region &&
-      body.mode &&
-      body.level &&
-      body.domain &&
-      body.skills &&
-      body.skills.length > 0 &&
-      body.preferredSector &&
-      body.timePerWeek &&
-      body.goal &&
-      body.projectPreference,
-  );
+  // We only strictly require the mode and some basic info to generate a recommendation
+  // Other fields can have defaults in the engine if missing
+  return Boolean(body.mode && body.country);
 }
 
 export async function POST(request: Request) {

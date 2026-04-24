@@ -213,7 +213,7 @@ export function IntakeForm({ mode }: IntakeFormProps) {
           >
             <option>Agriculture</option>
             <option>Education</option>
-            <option>Health</option>
+            <option value="Sante">Sante</option>
             <option>Commerce informel</option>
             <option>Energie</option>
             <option>Logistique</option>

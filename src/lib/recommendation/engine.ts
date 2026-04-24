@@ -12,7 +12,15 @@ import type {
 // ── Scoring helpers ──────────────────────────────────────────
 
 function sectorScore(template: ProjectTemplate, input: RecommendationInput): number {
+  if (!input.preferredSector) return 0;
   if (template.sector.toLowerCase() === input.preferredSector.trim().toLowerCase()) return 30;
+  // Handle "Health" vs "Sante" mapping
+  if (
+    (template.sector.toLowerCase() === "sante" && input.preferredSector.trim().toLowerCase() === "health") ||
+    (template.sector.toLowerCase() === "health" && input.preferredSector.trim().toLowerCase() === "sante")
+  ) {
+    return 30;
+  }
   return 0;
 }
 
@@ -129,7 +137,7 @@ export function generateRecommendation(input: RecommendationInput): Recommendati
       id: best.id,
       title: best.title,
       concept: best.concept,
-      whyItFits: `Ce projet correspond au mode ${input.mode}, s'aligne avec le secteur ${input.preferredSector}, et reste realiste pour un profil ${input.level} avec ${input.timePerWeek || "du temps limite"} disponible.`,
+      whyItFits: `Ce projet correspond au mode ${input.mode}, s'aligne avec le secteur ${input.preferredSector || "choisi"}, et reste realiste pour un profil ${input.level || "non precise"} avec ${input.timePerWeek || "du temps limite"} disponible.`,
       localWhy: `${best.localRelevance} Cette recommandation respecte aussi les realites du Burkina Faso : ${burkinaFasoContext.realities[1].toLowerCase()}.`,
       feasibilityLevel,
       costLevel,

@@ -2,8 +2,8 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { createClient } from "@supabase/supabase-js";
 
+import { createSupabaseBrowserClient } from "@/lib/supabase/client";
 import type { RecommendationResult } from "@/lib/types/recommendation";
 
 interface SaveProjectButtonProps {
@@ -22,11 +22,7 @@ export function SaveProjectButton({ result, sessionId }: SaveProjectButtonProps)
       setIsSaving(true);
       setError(null);
 
-      // Get the current user
-      const supabase = createClient(
-        process.env.NEXT_PUBLIC_SUPABASE_URL!,
-        process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-      );
+      const supabase = createSupabaseBrowserClient();
 
       const {
         data: { user },

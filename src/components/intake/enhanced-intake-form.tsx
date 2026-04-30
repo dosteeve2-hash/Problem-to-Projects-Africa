@@ -445,8 +445,8 @@ export function EnhancedIntakeForm({ mode }: EnhancedIntakeFormProps) {
               <Checkbox
                 id="equipment"
                 checked={formData.hasEquipment}
-                onCheckedChange={(checked) =>
-                  setFormData({ ...formData, hasEquipment: checked as boolean })
+                onChange={(e) =>
+                  setFormData({ ...formData, hasEquipment: e.target.checked })
                 }
               />
               <Label htmlFor="equipment">Vous avez déjà l'équipement nécessaire</Label>
@@ -456,8 +456,8 @@ export function EnhancedIntakeForm({ mode }: EnhancedIntakeFormProps) {
               <Checkbox
                 id="network"
                 checked={formData.hasNetwork}
-                onCheckedChange={(checked) =>
-                  setFormData({ ...formData, hasNetwork: checked as boolean })
+                onChange={(e) =>
+                  setFormData({ ...formData, hasNetwork: e.target.checked })
                 }
               />
               <Label htmlFor="network">Vous avez un réseau/clientèle existant</Label>
@@ -512,9 +512,9 @@ export function EnhancedIntakeForm({ mode }: EnhancedIntakeFormProps) {
           <div>
             <Label>Tolérance au risque: {formData.riskTolerance}/10</Label>
             <Slider
-              value={[formData.riskTolerance]}
-              onValueChange={(value) =>
-                setFormData({ ...formData, riskTolerance: value[0] })
+              value={formData.riskTolerance}
+              onChange={(e) =>
+                setFormData({ ...formData, riskTolerance: parseInt(e.target.value) || 1 })
               }
               min={1}
               max={10}

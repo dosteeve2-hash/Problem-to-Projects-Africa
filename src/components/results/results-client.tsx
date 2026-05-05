@@ -1,6 +1,6 @@
 "use client";
 
-import { useSyncExternalStore } from "react";
+import { useCallback, useRef, useSyncExternalStore } from "react";
 import Link from "next/link";
 
 import { SaveProjectButton } from "@/components/results/save-project-button";
@@ -12,21 +12,37 @@ type StoredResult = {
   sessionId: string;
 };
 
-export function ResultsClient() {
-  const payload = useSyncExternalStore(
-    () => () => undefined,
-    () => {
-      const raw = window.sessionStorage.getItem("problem-to-project-africa:result");
-      if (!raw) return null;
+const STORAGE_KEY = "problem-to-project-africa:result";
 
-      try {
-        return JSON.parse(raw) as StoredResult;
-      } catch {
-        return null;
-      }
-    },
-    () => null,
-  );
+function subscribe(onStoreChange: () => void) {
+  const handler = (e: StorageEvent) => {
+    if (e.key === STORAGE_KEY) onStoreChange();
+  };
+  window.addEventListener("storage", handler);
+  return () => window.removeEventListener("storage", handler);
+}
+
+export function ResultsClient() {
+  const cachedRaw = useRef<string | null>(null);
+  const cachedParsed = useRef<StoredResult | null>(null);
+
+  const getSnapshot = useCallback(() => {
+    const raw = window.sessionStorage.getItem(STORAGE_KEY);
+    if (raw === cachedRaw.current) return cachedParsed.current;
+    cachedRaw.current = raw;
+    if (!raw) {
+      cachedParsed.current = null;
+      return null;
+    }
+    try {
+      cachedParsed.current = JSON.parse(raw) as StoredResult;
+    } catch {
+      cachedParsed.current = null;
+    }
+    return cachedParsed.current;
+  }, []);
+
+  const payload = useSyncExternalStore(subscribe, getSnapshot, () => null);
 
   if (!payload) {
     return (

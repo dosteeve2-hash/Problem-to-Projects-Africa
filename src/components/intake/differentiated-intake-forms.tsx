@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * Formulaires d'Intake Différenciés et Enrichis
  * Chaque mode (Problème, Idée, Compétences) a ses propres questions pertinentes

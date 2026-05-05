@@ -9,21 +9,29 @@ export interface ProblemModeInput {
 
 export interface IdeaModeInput {
   ideaDescription: string;
+  ideaTitle?: string;
   targetMarket: string;
+  targetSector?: string;
   sector: string;
   estimatedCapital: number;
+  capitalNeeded?: number;
   competitorAnalysis: string;
   uniqueValue: string;
+  revenueTarget?: number;
+  profitMargin?: number;
+  breakEvenMonths?: number;
 }
 
 export interface SkillsModeInput {
   skills: string[];
+  primarySkills?: string[];
   skillLevel: string;
   yearsExperience: number;
   sector: string;
   desiredRole: string;
   availableTime: string;
   network: string;
+  incomeTarget?: number;
 }
 
 export const PROBLEM_MODE_QUESTIONS = [

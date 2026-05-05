@@ -1,12 +1,12 @@
 "use client";
 
 import { useSearchParams, useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useState, Suspense } from "react";
 import { EnhancedResultsDisplay } from "@/components/results/enhanced-results-display";
 import type { ProjectAnalysis } from "@/lib/types/project-analysis";
 import { Loader2 } from "lucide-react";
 
-export default function EnhancedResultsPage() {
+function EnhancedResultsContent() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const [analysis, setAnalysis] = useState<ProjectAnalysis | null>(null);
@@ -21,7 +21,7 @@ export default function EnhancedResultsPage() {
       try {
         const parsed = JSON.parse(decodeURIComponent(analysisData));
         setAnalysis(parsed);
-      } catch (err) {
+      } catch {
         setError("Erreur lors du chargement de l'analyse");
       }
     } else if (projectId) {
@@ -47,13 +47,13 @@ export default function EnhancedResultsPage() {
 
       alert("Projet sauvegardé avec succès!");
       router.push("/dashboard");
-    } catch (err: any) {
-      alert("Erreur: " + err.message);
+    } catch (err: unknown) {
+      const message = err instanceof Error ? err.message : "Erreur inconnue";
+      alert("Erreur: " + message);
     }
   };
 
   const handleRefine = () => {
-    // Rediriger vers le formulaire avec les données pré-remplies
     router.push("/intake-enhanced");
   };
 
@@ -62,7 +62,7 @@ export default function EnhancedResultsPage() {
       <div className="flex items-center justify-center min-h-screen">
         <div className="text-center">
           <Loader2 className="w-12 h-12 animate-spin mx-auto mb-4" />
-          <p>Chargement de l'analyse...</p>
+          <p>Chargement de l&apos;analyse...</p>
         </div>
       </div>
     );
@@ -93,5 +93,22 @@ export default function EnhancedResultsPage() {
         onRefine={handleRefine}
       />
     </div>
+  );
+}
+
+export default function EnhancedResultsPage() {
+  return (
+    <Suspense
+      fallback={
+        <div className="flex items-center justify-center min-h-screen">
+          <div className="text-center">
+            <Loader2 className="w-12 h-12 animate-spin mx-auto mb-4" />
+            <p>Chargement...</p>
+          </div>
+        </div>
+      }
+    >
+      <EnhancedResultsContent />
+    </Suspense>
   );
 }

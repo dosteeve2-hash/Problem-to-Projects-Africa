@@ -45,10 +45,8 @@ export function ModeSelector() {
         return (
           <motion.div
             key={mode.href}
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: i * 0.12 }}
             whileHover={{ scale: 1.02 }}
+            transition={{ duration: 0.15 }}
           >
             <Link
               href={mode.href}

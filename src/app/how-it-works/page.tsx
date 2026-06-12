@@ -53,10 +53,13 @@ export default function HowItWorksPage() {
     <div className="pt-24 pb-20">
       <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h1 className="text-4xl font-extrabold text-white mb-4">
+          <h1
+            className="text-4xl font-extrabold mb-4"
+            style={{ color: "var(--text)", fontFamily: "var(--font-serif)", fontStyle: "italic" }}
+          >
             Comment ça marche
           </h1>
-          <p className="text-lg text-slate-400">
+          <p className="text-lg" style={{ color: "var(--text2)" }}>
             Un processus guidé en 4 étapes pour passer de l'idée au projet concret.
           </p>
         </div>
@@ -65,25 +68,40 @@ export default function HowItWorksPage() {
           {steps.map((step, idx) => (
             <div key={step.number} className="flex gap-6">
               <div className="flex flex-col items-center">
-                <div className="w-10 h-10 rounded-2xl bg-amber-500 flex items-center justify-center text-slate-950 font-extrabold text-sm shrink-0">
+                <div
+                  className="w-10 h-10 rounded-2xl flex items-center justify-center text-sm font-extrabold shrink-0"
+                  style={{ background: "var(--gold)", color: "var(--bg)" }}
+                >
                   {idx + 1}
                 </div>
                 {idx < steps.length - 1 && (
-                  <div className="w-px flex-1 mt-3 bg-slate-800" />
+                  <div className="w-px flex-1 mt-3" style={{ background: "var(--border2)" }} />
                 )}
               </div>
 
               <Card className="flex-1 mb-4">
                 <div className="flex items-start gap-3">
-                  <span className="text-2xl font-extrabold text-slate-800">{step.number}</span>
+                  <span
+                    className="text-2xl font-extrabold"
+                    style={{ color: "var(--border2)", fontFamily: "var(--font-mono)" }}
+                  >
+                    {step.number}
+                  </span>
                   <div>
-                    <h2 className="text-lg font-bold text-white mb-2">{step.title}</h2>
-                    <p className="text-sm text-slate-400 mb-4">{step.description}</p>
+                    <h2
+                      className="text-lg font-bold mb-2"
+                      style={{ color: "var(--text)", fontFamily: "var(--font-serif)", fontStyle: "italic" }}
+                    >
+                      {step.title}
+                    </h2>
+                    <p className="text-sm mb-4" style={{ color: "var(--text2)" }}>
+                      {step.description}
+                    </p>
                     <ul className="space-y-1.5">
                       {step.details.map((detail, i) => (
                         <li key={i} className="flex items-start gap-2">
-                          <CheckCircle className="h-4 w-4 text-emerald-400 shrink-0 mt-0.5" />
-                          <span className="text-sm text-slate-400">{detail}</span>
+                          <CheckCircle className="h-4 w-4 shrink-0 mt-0.5" style={{ color: "var(--green)" }} />
+                          <span className="text-sm" style={{ color: "var(--text2)" }}>{detail}</span>
                         </li>
                       ))}
                     </ul>
@@ -100,7 +118,12 @@ export default function HowItWorksPage() {
               Commencer maintenant
             </Button>
           </Link>
-          <p className="mt-3 text-xs text-slate-600">Gratuit · Résultats en moins de 30 secondes</p>
+          <p
+            className="mt-3 text-xs"
+            style={{ color: "var(--text3)", fontFamily: "var(--font-mono)" }}
+          >
+            Gratuit · Résultats en moins de 30 secondes
+          </p>
         </div>
       </div>
     </div>

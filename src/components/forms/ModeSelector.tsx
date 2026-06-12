@@ -1,5 +1,8 @@
+"use client"
+
 import Link from "next/link"
 import { Wrench, Lightbulb, AlertTriangle, ArrowRight } from "lucide-react"
+import { motion } from "framer-motion"
 
 const modes = [
   {
@@ -10,7 +13,7 @@ const modes = [
     description:
       "Tu as des skills concrets — développement, agriculture, commerce, design, langues... P2P Africa trouve le projet qui correspond exactement à ce que tu sais faire.",
     tag: "Mode Skills",
-    color: "amber" as const,
+    accent: "#f0a832",
   },
   {
     href: "/start/idea",
@@ -20,7 +23,7 @@ const modes = [
     description:
       "Tu as une idée qui germe. P2P Africa l'analyse sous l'angle de la faisabilité, de l'impact local, et te propose un plan pour la concrétiser.",
     tag: "Mode Idée",
-    color: "emerald" as const,
+    accent: "#2dd4ff",
   },
   {
     href: "/start/problem",
@@ -30,61 +33,68 @@ const modes = [
     description:
       "Tu as vu quelque chose qui ne fonctionne pas. P2P Africa transforme cette observation en projet concret avec un modèle économique viable.",
     tag: "Mode Problème",
-    color: "blue" as const,
+    accent: "#22d98a",
   },
 ]
-
-const colorMap = {
-  amber: {
-    iconWrap: "bg-amber-500/10 border-amber-500/20",
-    icon: "text-amber-400",
-    tag: "bg-amber-500/10 text-amber-300",
-    hover: "hover:border-amber-500/50",
-  },
-  emerald: {
-    iconWrap: "bg-emerald-500/10 border-emerald-500/20",
-    icon: "text-emerald-400",
-    tag: "bg-emerald-500/10 text-emerald-300",
-    hover: "hover:border-emerald-500/50",
-  },
-  blue: {
-    iconWrap: "bg-blue-500/10 border-blue-500/20",
-    icon: "text-blue-400",
-    tag: "bg-blue-500/10 text-blue-300",
-    hover: "hover:border-blue-500/50",
-  },
-}
 
 export function ModeSelector() {
   return (
     <div className="grid md:grid-cols-3 gap-6">
-      {modes.map((mode) => {
+      {modes.map((mode, i) => {
         const Icon = mode.icon
-        const colors = colorMap[mode.color]
         return (
-          <Link
+          <motion.div
             key={mode.href}
-            href={mode.href}
-            className={`group block rounded-2xl border border-slate-800 bg-slate-900/60 p-6 transition-all duration-200 ${colors.hover} hover:bg-slate-800/60`}
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: i * 0.12 }}
+            whileHover={{ scale: 1.02 }}
           >
-            <div className="flex items-start justify-between mb-4">
-              <div className={`rounded-xl border p-3 ${colors.iconWrap}`}>
-                <Icon className={`h-6 w-6 ${colors.icon}`} />
+            <Link
+              href={mode.href}
+              className="group block h-full rounded-2xl border border-[#1f3054] bg-[#111d34] p-6 transition-all duration-300 hover:border-[#f0a832]/60 hover:bg-[#0c1528] hover:shadow-xl"
+            >
+              <div className="flex items-start justify-between mb-5">
+                <div
+                  className="rounded-xl p-3"
+                  style={{
+                    background: `${mode.accent}15`,
+                    border: `1px solid ${mode.accent}25`,
+                  }}
+                >
+                  <Icon className="h-6 w-6" style={{ color: mode.accent }} />
+                </div>
+                <span
+                  className="rounded-full px-2.5 py-1 text-xs font-medium"
+                  style={{
+                    background: `${mode.accent}15`,
+                    color: mode.accent,
+                    fontFamily: "var(--font-jetbrains), monospace",
+                  }}
+                >
+                  {mode.tag}
+                </span>
               </div>
-              <span className={`rounded-full px-2.5 py-1 text-xs font-medium ${colors.tag}`}>
-                {mode.tag}
-              </span>
-            </div>
 
-            <h3 className="text-lg font-bold text-white">{mode.title}</h3>
-            <p className="text-sm text-slate-400 mb-3">{mode.subtitle}</p>
-            <p className="text-sm text-slate-500 leading-relaxed">{mode.description}</p>
+              <h3
+                className="text-lg font-bold text-[#f5f0e8] mb-1"
+                style={{ fontFamily: "var(--font-playfair), serif", fontStyle: "italic" }}
+              >
+                {mode.title}
+              </h3>
+              <p className="text-sm text-[#9ba8c4] mb-3" style={{ fontStyle: "normal" }}>
+                {mode.subtitle}
+              </p>
+              <p className="text-sm text-[#4e5f82] leading-relaxed" style={{ fontStyle: "normal" }}>
+                {mode.description}
+              </p>
 
-            <div className="mt-5 flex items-center gap-1 text-sm font-semibold text-slate-400 group-hover:text-white transition-colors">
-              Choisir ce mode
-              <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
-            </div>
-          </Link>
+              <div className="mt-5 flex items-center gap-1 text-sm font-semibold text-[#4e5f82] group-hover:text-[#f0a832] transition-colors">
+                <span style={{ fontFamily: "var(--font-jetbrains), monospace" }}>Choisir ce mode</span>
+                <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+              </div>
+            </Link>
+          </motion.div>
         )
       })}
     </div>

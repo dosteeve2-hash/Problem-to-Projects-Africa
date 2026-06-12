@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import { useRouter } from "next/navigation"
+import { storeResult } from "@/lib/session-store"
 import { CountrySelector } from "./CountrySelector"
 import { SectorSelector } from "./SectorSelector"
 import { Input } from "@/components/ui/Input"
@@ -73,6 +74,7 @@ export function IdeaForm() {
         return
       }
 
+      storeResult(data.id, data.result)
       router.push(`/results/${data.id}`)
     } catch {
       setError("Erreur réseau. Vérifie ta connexion.")
@@ -87,14 +89,14 @@ export function IdeaForm() {
     <div className="space-y-6">
       {/* Progress */}
       <div className="space-y-2">
-        <div className="flex justify-between text-xs text-slate-500">
+        <div className="flex justify-between text-xs" style={{ color: "var(--text3)", fontFamily: "var(--font-mono), monospace" }}>
           <span>Étape {step} sur 2</span>
           <span>{progressPercent}%</span>
         </div>
-        <div className="h-1.5 w-full rounded-full bg-slate-800">
+        <div className="h-1.5 w-full rounded-full" style={{ background: "var(--bg3)" }}>
           <div
-            className="h-full rounded-full bg-emerald-500 transition-all duration-500"
-            style={{ width: `${progressPercent}%` }}
+            className="h-full rounded-full transition-all duration-500"
+            style={{ width: `${progressPercent}%`, background: "var(--green)" }}
           />
         </div>
       </div>
@@ -115,7 +117,7 @@ export function IdeaForm() {
           <SectorSelector value={sector} onChange={setSector} error={errors.sector} />
 
           <div className="flex flex-col gap-1.5">
-            <label className="text-sm font-medium text-slate-300">Ton niveau</label>
+            <label className="text-sm font-medium" style={{ color: "var(--text2)" }}>Ton niveau</label>
             <div className="grid grid-cols-3 gap-2">
               {(["beginner", "intermediate", "advanced"] as const).map((level) => {
                 const labels = { beginner: "Débutant", intermediate: "Intermédiaire", advanced: "Avancé" }
@@ -124,12 +126,12 @@ export function IdeaForm() {
                     key={level}
                     type="button"
                     onClick={() => setUserLevel(level)}
-                    className={[
-                      "rounded-xl border px-3 py-2.5 text-sm font-medium transition-all",
+                    className="rounded-xl border px-3 py-2.5 text-sm font-medium transition-all"
+                    style={
                       userLevel === level
-                        ? "border-emerald-500 bg-emerald-500/10 text-white"
-                        : "border-slate-700 text-slate-400 hover:border-slate-600 hover:text-white",
-                    ].join(" ")}
+                        ? { borderColor: "var(--gold)", background: "rgba(240,168,50,0.1)", color: "var(--text)" }
+                        : { borderColor: "var(--border2)", color: "var(--text2)" }
+                    }
                   >
                     {labels[level]}
                   </button>
@@ -138,7 +140,7 @@ export function IdeaForm() {
             </div>
           </div>
 
-          <Button onClick={() => validateStep1() && setStep(2)} className="w-full bg-emerald-500 hover:bg-emerald-600 shadow-emerald-500/25">
+          <Button onClick={() => validateStep1() && setStep(2)} className="w-full">
             Continuer
           </Button>
         </div>
@@ -172,8 +174,8 @@ export function IdeaForm() {
           />
 
           {error && (
-            <div className="rounded-xl border border-red-500/30 bg-red-500/10 px-4 py-3">
-              <p className="text-sm text-red-400">{error}</p>
+            <div className="rounded-xl px-4 py-3" style={{ border: "1px solid rgba(239,68,68,0.3)", background: "rgba(239,68,68,0.08)" }}>
+              <p className="text-sm" style={{ color: "var(--red)" }}>{error}</p>
             </div>
           )}
 
@@ -184,15 +186,15 @@ export function IdeaForm() {
             <Button
               onClick={handleSubmit}
               loading={loading}
-              className="flex-1 bg-emerald-500 hover:bg-emerald-600 shadow-emerald-500/25"
+              className="flex-1"
             >
               {loading ? "Analyse en cours..." : "Analyser mon idée"}
             </Button>
           </div>
 
           {loading && (
-            <p className="text-center text-xs text-slate-500">
-              L'IA analyse ton idée... ~20 secondes
+            <p className="text-center text-xs" style={{ color: "var(--text3)", fontFamily: "var(--font-mono), monospace" }}>
+              L&apos;IA analyse ton idée... ~20 secondes
             </p>
           )}
         </div>

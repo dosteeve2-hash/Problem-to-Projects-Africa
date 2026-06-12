@@ -47,15 +47,23 @@ function LoginForm() {
   if (sent) {
     return (
       <div className="text-center">
-        <div className="inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-emerald-500/10 border border-emerald-500/20 mb-4">
-          <CheckCircle className="h-8 w-8 text-emerald-400" />
+        <div
+          className="inline-flex h-16 w-16 items-center justify-center rounded-2xl mb-4"
+          style={{ background: "rgba(34,217,138,0.1)", border: "1px solid rgba(34,217,138,0.2)" }}
+        >
+          <CheckCircle className="h-8 w-8" style={{ color: "var(--green)" }} />
         </div>
-        <h2 className="text-xl font-bold text-white mb-2">Vérifie ta boîte mail</h2>
-        <p className="text-slate-400 text-sm mb-2">
+        <h2
+          className="text-xl font-bold mb-2"
+          style={{ color: "var(--text)", fontFamily: "var(--font-serif)", fontStyle: "italic" }}
+        >
+          Vérifie ta boîte mail
+        </h2>
+        <p className="text-sm mb-2" style={{ color: "var(--text2)" }}>
           On a envoyé un lien de connexion à{" "}
-          <span className="text-amber-300 font-medium">{email}</span>
+          <span style={{ color: "var(--gold)", fontWeight: 600 }}>{email}</span>
         </p>
-        <p className="text-slate-500 text-xs">
+        <p className="text-xs" style={{ color: "var(--text3)" }}>
           Clique sur le lien dans l'email pour te connecter. Pas de mot de passe requis.
         </p>
       </div>
@@ -74,8 +82,11 @@ function LoginForm() {
       />
 
       {error && (
-        <div className="rounded-xl border border-red-500/30 bg-red-500/10 px-4 py-3">
-          <p className="text-sm text-red-400">{error}</p>
+        <div
+          className="rounded-xl px-4 py-3"
+          style={{ border: "1px solid rgba(239,68,68,0.3)", background: "rgba(239,68,68,0.08)" }}
+        >
+          <p className="text-sm" style={{ color: "var(--red)" }}>{error}</p>
         </div>
       )}
 
@@ -83,7 +94,7 @@ function LoginForm() {
         {loading ? "Envoi en cours..." : "Recevoir le lien de connexion"}
       </Button>
 
-      <p className="text-center text-xs text-slate-600">
+      <p className="text-center text-xs" style={{ color: "var(--text3)", fontFamily: "var(--font-mono)" }}>
         Pas de mot de passe. Un lien magique sera envoyé à ton email.
       </p>
     </form>
@@ -95,19 +106,28 @@ export default function LoginPage() {
     <div className="pt-16 min-h-screen flex items-center justify-center px-4">
       <div className="w-full max-w-sm">
         <div className="text-center mb-8">
-          <div className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-amber-500 mb-4">
-            <Zap className="h-6 w-6 text-slate-950" />
+          <div
+            className="inline-flex h-12 w-12 items-center justify-center rounded-2xl mb-4"
+            style={{ background: "var(--gold)" }}
+          >
+            <Zap className="h-6 w-6" style={{ color: "var(--bg)" }} />
           </div>
-          <h1 className="text-2xl font-extrabold text-white mb-2">
+          <h1
+            className="text-2xl font-extrabold mb-2"
+            style={{ color: "var(--text)", fontFamily: "var(--font-serif)", fontStyle: "italic" }}
+          >
             Connexion à P2P Africa
           </h1>
-          <p className="text-sm text-slate-400">
+          <p className="text-sm" style={{ color: "var(--text2)" }}>
             Connecte-toi pour sauvegarder et retrouver tes projets.
           </p>
         </div>
 
-        <div className="rounded-2xl border border-slate-800 bg-slate-900/60 p-6">
-          <Suspense fallback={<div className="text-slate-400 text-sm">Chargement...</div>}>
+        <div
+          className="rounded-2xl p-6"
+          style={{ border: "1px solid var(--border2)", background: "var(--bg3)" }}
+        >
+          <Suspense fallback={<div className="text-sm" style={{ color: "var(--text2)" }}>Chargement...</div>}>
             <LoginForm />
           </Suspense>
         </div>

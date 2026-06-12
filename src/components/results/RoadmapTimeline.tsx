@@ -8,10 +8,10 @@ type RoadmapTimelineProps = {
 }
 
 const weeks = [
-  { key: "week_1" as const, label: "Semaine 1", color: "border-amber-500 bg-amber-500" },
-  { key: "week_2" as const, label: "Semaine 2", color: "border-blue-500 bg-blue-500" },
-  { key: "week_3" as const, label: "Semaine 3", color: "border-purple-500 bg-purple-500" },
-  { key: "week_4" as const, label: "Semaine 4", color: "border-emerald-500 bg-emerald-500" },
+  { key: "week_1" as const, label: "Semaine 1", color: "border-[#f0a832] bg-[#f0a832]" },
+  { key: "week_2" as const, label: "Semaine 2", color: "border-[#2dd4ff] bg-[#2dd4ff]" },
+  { key: "week_3" as const, label: "Semaine 3", color: "border-[#f7c060] bg-[#f7c060]" },
+  { key: "week_4" as const, label: "Semaine 4", color: "border-[#22d98a] bg-[#22d98a]" },
 ]
 
 export function RoadmapTimeline({ roadmap }: RoadmapTimelineProps) {
@@ -27,18 +27,18 @@ export function RoadmapTimeline({ roadmap }: RoadmapTimelineProps) {
               {idx + 1}
             </div>
             {idx < weeks.length - 1 && (
-              <div className="w-px flex-1 mt-2 bg-slate-800" />
+              <div className="w-px flex-1 mt-2 bg-[#16233d]" />
             )}
           </div>
 
           {/* Content */}
           <div className="flex-1 pb-4">
-            <h4 className="text-sm font-semibold text-white mb-2">{week.label}</h4>
+            <h4 className="text-sm font-semibold text-[#f5f0e8] mb-2">{week.label}</h4>
             <ul className="space-y-1.5">
               {roadmap[week.key].map((action, i) => (
                 <li key={i} className="flex items-start gap-2">
-                  <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-slate-600 shrink-0" />
-                  <span className="text-sm text-slate-400">{action}</span>
+                  <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-[#1f3054] shrink-0" />
+                  <span className="text-sm text-[#9ba8c4]">{action}</span>
                 </li>
               ))}
             </ul>

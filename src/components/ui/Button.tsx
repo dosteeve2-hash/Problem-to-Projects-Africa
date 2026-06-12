@@ -15,12 +15,12 @@ type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
 
 const variantClasses: Record<Variant, string> = {
   primary:
-    "bg-amber-500 hover:bg-amber-600 text-white shadow-lg shadow-amber-500/25 hover:shadow-amber-600/30",
+    "bg-[#f0a832] hover:bg-[#f7c060] text-[#070e1f] font-bold shadow-lg shadow-[#f0a832]/25 hover:shadow-[#f7c060]/30",
   secondary:
-    "bg-slate-800 hover:bg-slate-700 text-white border border-slate-700 hover:border-slate-600",
+    "bg-[#111d34] hover:bg-[#0c1528] text-[#f5f0e8] border border-[#1f3054] hover:border-[#f0a832]/40",
   ghost:
-    "bg-transparent hover:bg-slate-800/60 text-slate-300 hover:text-white border border-slate-700/50 hover:border-slate-600",
-  danger: "bg-red-600 hover:bg-red-700 text-white",
+    "bg-transparent hover:bg-[#111d34] text-[#9ba8c4] hover:text-[#f5f0e8] border border-[#1f3054] hover:border-[#f0a832]/40",
+  danger: "bg-[#ef4444] hover:bg-[#dc2626] text-white",
 }
 
 const sizeClasses: Record<Size, string> = {
@@ -49,7 +49,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         disabled={disabled || loading}
         className={[
           "inline-flex items-center justify-center gap-2 rounded-xl font-semibold transition-all duration-200",
-          "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900",
+          "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#f0a832] focus-visible:ring-offset-2 focus-visible:ring-offset-[#070e1f]",
           "disabled:opacity-50 disabled:cursor-not-allowed",
           variantClasses[variant],
           sizeClasses[size],

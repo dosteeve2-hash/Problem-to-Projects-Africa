@@ -8,6 +8,11 @@ const SaveSchema = z.object({
 
 export async function POST(request: NextRequest) {
   const supabase = await createClient()
+
+  if (!supabase) {
+    return NextResponse.json({ error: "Base de données non configurée" }, { status: 503 })
+  }
+
   const {
     data: { user },
   } = await supabase.auth.getUser()

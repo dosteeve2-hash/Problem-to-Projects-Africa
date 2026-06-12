@@ -6,11 +6,20 @@ export function CTASection() {
   return (
     <section className="py-24">
       <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center">
-        <div className="rounded-3xl border border-amber-500/20 bg-gradient-to-b from-amber-500/10 to-slate-900/80 p-12">
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-white mb-4">
+        <div
+          className="rounded-3xl p-12"
+          style={{
+            border: "1px solid rgba(240,168,50,0.2)",
+            background: "linear-gradient(135deg, rgba(240,168,50,0.08), rgba(7,14,31,0.9))",
+          }}
+        >
+          <h2
+            className="text-3xl sm:text-4xl font-extrabold mb-4"
+            style={{ fontFamily: "var(--font-serif)", fontStyle: "italic", color: "var(--text)" }}
+          >
             Prêt à concrétiser ton projet ?
           </h2>
-          <p className="text-slate-400 text-lg mb-8 max-w-xl mx-auto">
+          <p className="text-lg mb-8 max-w-xl mx-auto" style={{ color: "var(--text2)" }}>
             En 2 minutes, tu as un projet concret adapté à ta réalité. Gratuit, sans compte, sans bullshit.
           </p>
           <Link href="/start">
@@ -18,7 +27,7 @@ export function CTASection() {
               Transforme ton idée maintenant
             </Button>
           </Link>
-          <p className="mt-4 text-xs text-slate-600">
+          <p className="mt-4 text-xs" style={{ color: "var(--text3)", fontFamily: "var(--font-mono)" }}>
             Aucune carte de crédit requise · Résultats instantanés
           </p>
         </div>

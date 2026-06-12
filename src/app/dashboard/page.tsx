@@ -9,6 +9,11 @@ import type { SavedProject } from "@/types"
 
 export default async function DashboardPage() {
   const supabase = await createClient()
+
+  if (!supabase) {
+    redirect("/login?redirect=/dashboard")
+  }
+
   const {
     data: { user },
   } = await supabase.auth.getUser()
@@ -20,7 +25,6 @@ export default async function DashboardPage() {
   let projects: SavedProject[] = []
   try {
     const raw = await getUserProjects(user.id)
-    // Map raw DB rows to SavedProject type
     projects = raw.map((p) => ({
       id: p.id as string,
       user_id: p.user_id as string,
@@ -41,10 +45,13 @@ export default async function DashboardPage() {
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between mb-10">
           <div>
-            <h1 className="text-2xl sm:text-3xl font-extrabold text-white">
+            <h1
+              className="text-2xl sm:text-3xl font-extrabold"
+              style={{ color: "var(--text)", fontFamily: "var(--font-serif)", fontStyle: "italic" }}
+            >
               Mes projets
             </h1>
-            <p className="text-slate-500 mt-1 text-sm">
+            <p className="mt-1 text-sm" style={{ color: "var(--text3)", fontFamily: "var(--font-mono)" }}>
               {projects.length} projet{projects.length !== 1 ? "s" : ""} généré{projects.length !== 1 ? "s" : ""}
             </p>
           </div>

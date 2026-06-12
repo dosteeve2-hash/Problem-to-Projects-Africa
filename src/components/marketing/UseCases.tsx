@@ -1,3 +1,5 @@
+"use client"
+
 import Link from "next/link"
 import { Wrench, Lightbulb, AlertTriangle, ArrowRight } from "lucide-react"
 
@@ -10,7 +12,7 @@ const useCases = [
     description:
       "Tu sais coder, tu as des connaissances en agriculture, tu maîtrises Excel, tu parles 3 langues... P2P Africa identifie le projet qui valorise exactement ce que tu sais faire.",
     example: "Ex: développeur web + Ouagadougou → Plateforme de commandes pour restaurants locaux",
-    color: "amber" as const,
+    accent: "var(--gold)",
     href: "/start/skills",
   },
   {
@@ -21,7 +23,7 @@ const useCases = [
     description:
       "Tu as une idée qui te trotte dans la tête. Est-ce que c'est viable ? Qui seraient tes clients ? Quel serait le bon modèle économique ? P2P Africa te donne une réponse structurée.",
     example: "Ex: \"Je veux créer une app pour les tontines\" → Analyse complète + MVP scope",
-    color: "emerald" as const,
+    accent: "var(--green)",
     href: "/start/idea",
   },
   {
@@ -32,41 +34,23 @@ const useCases = [
     description:
       "Tu as observé quelque chose qui ne fonctionne pas — un manque, une inefficacité, une douleur récurrente. P2P Africa transforme cette observation en projet concret.",
     example: "Ex: \"Les agriculteurs de mon village n'ont pas accès à la météo\" → Projet SMS météo",
-    color: "blue" as const,
+    accent: "var(--cyan)",
     href: "/start/problem",
   },
 ]
-
-const colorMap = {
-  amber: {
-    iconBg: "bg-amber-500/10 border border-amber-500/20",
-    icon: "text-amber-400",
-    badge: "bg-amber-500/10 text-amber-300 border border-amber-500/20",
-    hover: "hover:border-amber-500/40",
-  },
-  emerald: {
-    iconBg: "bg-emerald-500/10 border border-emerald-500/20",
-    icon: "text-emerald-400",
-    badge: "bg-emerald-500/10 text-emerald-300 border border-emerald-500/20",
-    hover: "hover:border-emerald-500/40",
-  },
-  blue: {
-    iconBg: "bg-blue-500/10 border border-blue-500/20",
-    icon: "text-blue-400",
-    badge: "bg-blue-500/10 text-blue-300 border border-blue-500/20",
-    hover: "hover:border-blue-500/40",
-  },
-}
 
 export function UseCases() {
   return (
     <section className="py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-white mb-4">
+          <h2
+            className="text-3xl sm:text-4xl font-extrabold mb-4"
+            style={{ fontFamily: "var(--font-serif)", fontStyle: "italic", color: "var(--text)" }}
+          >
             Quel est ton point de départ ?
           </h2>
-          <p className="text-slate-400 text-lg max-w-2xl mx-auto">
+          <p className="text-lg max-w-2xl mx-auto" style={{ color: "var(--text2)" }}>
             Peu importe où tu en es, il y a un chemin. Choisis le mode qui correspond à ta situation.
           </p>
         </div>
@@ -74,31 +58,40 @@ export function UseCases() {
         <div className="grid md:grid-cols-3 gap-6">
           {useCases.map((uc) => {
             const Icon = uc.icon
-            const colors = colorMap[uc.color]
             return (
               <Link
                 key={uc.mode}
                 href={uc.href}
-                className={`group block rounded-2xl border border-slate-800 bg-slate-900/60 p-6 transition-all duration-200 ${colors.hover} hover:bg-slate-800/60`}
+                className="group block rounded-2xl p-6 transition-all duration-200 hover:-translate-y-1"
+                style={{ background: "var(--bg3)", border: "1px solid var(--border2)" }}
               >
-                <div className={`inline-flex rounded-xl p-3 ${colors.iconBg}`}>
-                  <Icon className={`h-6 w-6 ${colors.icon}`} />
+                <div
+                  className="inline-flex rounded-xl p-3"
+                  style={{ background: uc.accent + "15", border: `1px solid ${uc.accent}25` }}
+                >
+                  <Icon className="h-6 w-6" style={{ color: uc.accent }} />
                 </div>
 
-                <h3 className="mt-4 text-lg font-bold text-white">
+                <h3 className="mt-4 text-lg font-bold" style={{ color: "var(--text)", fontFamily: "var(--font-serif)", fontStyle: "italic" }}>
                   {uc.title}{" "}
-                  <span className="text-slate-400 font-normal">{uc.subtitle}</span>
+                  <span style={{ color: "var(--text2)", fontWeight: 400, fontStyle: "normal" }}>{uc.subtitle}</span>
                 </h3>
 
-                <p className="mt-3 text-sm text-slate-400 leading-relaxed">
+                <p className="mt-3 text-sm leading-relaxed" style={{ color: "var(--text2)" }}>
                   {uc.description}
                 </p>
 
-                <div className={`mt-4 rounded-lg p-3 text-xs ${colors.badge}`}>
+                <div
+                  className="mt-4 rounded-lg p-3 text-xs"
+                  style={{ background: uc.accent + "10", border: `1px solid ${uc.accent}20`, color: uc.accent, fontFamily: "var(--font-mono)" }}
+                >
                   {uc.example}
                 </div>
 
-                <div className="mt-4 flex items-center gap-1 text-sm font-medium text-slate-400 group-hover:text-white transition-colors">
+                <div
+                  className="mt-4 flex items-center gap-1 text-sm font-medium transition-colors group-hover:opacity-80"
+                  style={{ color: "var(--text3)" }}
+                >
                   Essayer ce mode
                   <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
                 </div>

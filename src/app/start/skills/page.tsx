@@ -5,13 +5,24 @@ export default function SkillsPage() {
     <div className="pt-24 pb-20">
       <div className="mx-auto max-w-2xl px-4 sm:px-6 lg:px-8">
         <div className="mb-8">
-          <div className="inline-flex items-center gap-2 rounded-full bg-amber-500/10 border border-amber-500/20 px-3 py-1 mb-4">
-            <span className="text-xs font-medium text-amber-400">Mode Skills</span>
+          <div
+            className="inline-flex items-center gap-2 rounded-full px-3 py-1 mb-4"
+            style={{ background: "rgba(34,217,138,0.1)", border: "1px solid rgba(34,217,138,0.2)" }}
+          >
+            <span
+              className="text-xs font-medium"
+              style={{ color: "var(--green)", fontFamily: "var(--font-mono)" }}
+            >
+              Mode Skills
+            </span>
           </div>
-          <h1 className="text-2xl sm:text-3xl font-extrabold text-white mb-2">
+          <h1
+            className="text-2xl sm:text-3xl font-extrabold mb-2"
+            style={{ color: "var(--text)", fontFamily: "var(--font-serif)", fontStyle: "italic" }}
+          >
             Dis-moi ce que tu sais faire
           </h1>
-          <p className="text-slate-400">
+          <p style={{ color: "var(--text2)" }}>
             Je vais trouver le projet qui correspond exactement à tes compétences et ton contexte local.
           </p>
         </div>

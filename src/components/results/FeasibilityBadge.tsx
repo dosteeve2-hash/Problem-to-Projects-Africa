@@ -9,21 +9,21 @@ type FeasibilityBadgeProps = {
 const levelConfig = {
   low: {
     label: "Faisabilité faible",
-    color: "text-red-400",
-    bg: "bg-red-500/10 border-red-500/20",
-    dot: "bg-red-400",
+    color: "text-[#ef4444]",
+    bg: "bg-[#ef4444]/10 border-[#ef4444]/20",
+    dot: "bg-[#ef4444]",
   },
   medium: {
     label: "Faisabilité moyenne",
-    color: "text-amber-400",
-    bg: "bg-amber-500/10 border-amber-500/20",
-    dot: "bg-amber-400",
+    color: "text-[#f0a832]",
+    bg: "bg-[#f0a832]/10 border-[#f0a832]/20",
+    dot: "bg-[#f0a832]",
   },
   high: {
     label: "Faisabilité élevée",
-    color: "text-emerald-400",
-    bg: "bg-emerald-500/10 border-emerald-500/20",
-    dot: "bg-emerald-400",
+    color: "text-[#22d98a]",
+    bg: "bg-[#22d98a]/10 border-[#22d98a]/20",
+    dot: "bg-[#22d98a]",
   },
 }
 
@@ -47,7 +47,7 @@ export function FeasibilityBadge({ level, explanation, compact = false }: Feasib
         <span className={`w-2 h-2 rounded-full ${config.dot}`} />
         <span className={`text-sm font-semibold ${config.color}`}>{config.label}</span>
       </div>
-      <p className="text-sm text-slate-400">{explanation}</p>
+      <p className="text-sm text-[#9ba8c4]">{explanation}</p>
     </div>
   )
 }

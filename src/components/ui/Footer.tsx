@@ -3,31 +3,48 @@ import { Zap } from "lucide-react"
 
 export function Footer() {
   return (
-    <footer className="border-t border-slate-800 bg-slate-950 py-12">
+    <footer
+      className="py-12"
+      style={{ borderTop: "1px solid var(--border)", background: "var(--bg2)" }}
+    >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex items-center gap-2">
-            <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-amber-500">
-              <Zap className="h-3.5 w-3.5 text-slate-950" />
+            <div
+              className="flex h-7 w-7 items-center justify-center rounded-lg"
+              style={{ background: "var(--gold)" }}
+            >
+              <Zap className="h-3.5 w-3.5" style={{ color: "var(--bg)" }} />
             </div>
-            <span className="font-bold text-white text-sm">
-              P2P<span className="text-amber-400">Africa</span>
+            <span
+              className="font-bold text-sm"
+              style={{ fontFamily: "var(--font-serif)", fontStyle: "italic", color: "var(--text)" }}
+            >
+              P2P<span style={{ color: "var(--gold)" }}>Africa</span>
             </span>
           </div>
 
           <nav className="flex items-center gap-6">
-            <Link href="/how-it-works" className="text-sm text-slate-500 hover:text-white transition-colors">
-              Comment ça marche
-            </Link>
-            <Link href="/about" className="text-sm text-slate-500 hover:text-white transition-colors">
-              À propos
-            </Link>
-            <Link href="/start" className="text-sm text-slate-500 hover:text-white transition-colors">
-              Commencer
-            </Link>
+            {[
+              { href: "/how-it-works", label: "Comment ça marche" },
+              { href: "/about", label: "À propos" },
+              { href: "/start", label: "Commencer" },
+            ].map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className="text-sm transition-colors hover:opacity-80"
+                style={{ color: "var(--text3)", fontFamily: "var(--font-mono)", fontSize: "11px", textTransform: "uppercase", letterSpacing: "0.08em" }}
+              >
+                {link.label}
+              </Link>
+            ))}
           </nav>
 
-          <p className="text-xs text-slate-600">
+          <p
+            className="text-xs"
+            style={{ color: "var(--text3)", fontFamily: "var(--font-mono)" }}
+          >
             © {new Date().getFullYear()} Problem to Project Africa. Fait avec ❤️ pour l'Afrique.
           </p>
         </div>

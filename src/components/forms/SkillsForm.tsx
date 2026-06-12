@@ -3,6 +3,7 @@
 import { useState } from "react"
 import { useRouter } from "next/navigation"
 import { Plus, X } from "lucide-react"
+import { storeResult } from "@/lib/session-store"
 import { CountrySelector } from "./CountrySelector"
 import { SectorSelector } from "./SectorSelector"
 import { Input } from "@/components/ui/Input"
@@ -104,6 +105,7 @@ export function SkillsForm() {
         return
       }
 
+      storeResult(data.id, data.result)
       router.push(`/results/${data.id}`)
     } catch {
       setError("Erreur réseau. Vérifie ta connexion.")
@@ -118,14 +120,14 @@ export function SkillsForm() {
     <div className="space-y-6">
       {/* Progress */}
       <div className="space-y-2">
-        <div className="flex justify-between text-xs text-slate-500">
+        <div className="flex justify-between text-xs" style={{ color: "var(--text3)", fontFamily: "var(--font-mono), monospace" }}>
           <span>Étape {step} sur 3</span>
           <span>{progressPercent}%</span>
         </div>
-        <div className="h-1.5 w-full rounded-full bg-slate-800">
+        <div className="h-1.5 w-full rounded-full" style={{ background: "var(--bg3)" }}>
           <div
-            className="h-full rounded-full bg-amber-500 transition-all duration-500"
-            style={{ width: `${progressPercent}%` }}
+            className="h-full rounded-full transition-all duration-500"
+            style={{ width: `${progressPercent}%`, background: "var(--gold)" }}
           />
         </div>
       </div>
@@ -147,7 +149,7 @@ export function SkillsForm() {
           <SectorSelector value={sector} onChange={setSector} error={errors.sector} />
 
           <div className="flex flex-col gap-1.5">
-            <label className="text-sm font-medium text-slate-300">Ton niveau</label>
+            <label className="text-sm font-medium" style={{ color: "var(--text2)" }}>Ton niveau</label>
             <div className="grid grid-cols-3 gap-2">
               {(["beginner", "intermediate", "advanced"] as const).map((level) => {
                 const labels = { beginner: "Débutant", intermediate: "Intermédiaire", advanced: "Avancé" }
@@ -156,12 +158,12 @@ export function SkillsForm() {
                     key={level}
                     type="button"
                     onClick={() => setUserLevel(level)}
-                    className={[
-                      "rounded-xl border px-3 py-2.5 text-sm font-medium transition-all",
+                    className="rounded-xl border px-3 py-2.5 text-sm font-medium transition-all"
+                    style={
                       userLevel === level
-                        ? "border-amber-500 bg-amber-500/10 text-white"
-                        : "border-slate-700 text-slate-400 hover:border-slate-600 hover:text-white",
-                    ].join(" ")}
+                        ? { borderColor: "var(--gold)", background: "rgba(240,168,50,0.1)", color: "var(--text)" }
+                        : { borderColor: "var(--border2)", color: "var(--text2)" }
+                    }
                   >
                     {labels[level]}
                   </button>
@@ -180,8 +182,8 @@ export function SkillsForm() {
       {step === 2 && (
         <div className="space-y-6">
           <div className="flex flex-col gap-1.5">
-            <label className="text-sm font-medium text-slate-300">
-              Tes compétences <span className="text-red-400">*</span>
+            <label className="text-sm font-medium" style={{ color: "var(--text2)" }}>
+              Tes compétences <span style={{ color: "var(--red)" }}>*</span>
             </label>
             <div className="flex gap-2">
               <Input
@@ -200,21 +202,22 @@ export function SkillsForm() {
                 {skills.map((skill) => (
                   <span
                     key={skill}
-                    className="inline-flex items-center gap-1.5 rounded-full bg-amber-500/10 border border-amber-500/20 px-3 py-1 text-xs font-medium text-amber-300"
+                    className="inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-medium"
+                    style={{ background: "rgba(240,168,50,0.1)", border: "1px solid rgba(240,168,50,0.2)", color: "var(--gold2)" }}
                   >
                     {skill}
-                    <button onClick={() => removeSkill(skill)} className="text-amber-400 hover:text-white">
+                    <button onClick={() => removeSkill(skill)} style={{ color: "var(--gold)" }}>
                       <X className="h-3 w-3" />
                     </button>
                   </span>
                 ))}
               </div>
             )}
-            {errors.skills && <p className="text-xs text-red-400">{errors.skills}</p>}
+            {errors.skills && <p className="text-xs" style={{ color: "var(--red)" }}>{errors.skills}</p>}
           </div>
 
           <div className="flex flex-col gap-1.5">
-            <label className="text-sm font-medium text-slate-300">
+            <label className="text-sm font-medium" style={{ color: "var(--text2)" }}>
               Outils que tu maîtrises (optionnel)
             </label>
             <div className="flex gap-2">
@@ -234,10 +237,11 @@ export function SkillsForm() {
                 {tools.map((tool) => (
                   <span
                     key={tool}
-                    className="inline-flex items-center gap-1.5 rounded-full bg-slate-800 border border-slate-700 px-3 py-1 text-xs font-medium text-slate-300"
+                    className="inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-medium"
+                    style={{ background: "var(--bg2)", border: "1px solid var(--border2)", color: "var(--text2)" }}
                   >
                     {tool}
-                    <button onClick={() => removeTool(tool)} className="text-slate-400 hover:text-white">
+                    <button onClick={() => removeTool(tool)} style={{ color: "var(--text3)" }}>
                       <X className="h-3 w-3" />
                     </button>
                   </span>
@@ -284,8 +288,8 @@ export function SkillsForm() {
           />
 
           {error && (
-            <div className="rounded-xl border border-red-500/30 bg-red-500/10 px-4 py-3">
-              <p className="text-sm text-red-400">{error}</p>
+            <div className="rounded-xl px-4 py-3" style={{ border: "1px solid rgba(239,68,68,0.3)", background: "rgba(239,68,68,0.08)" }}>
+              <p className="text-sm" style={{ color: "var(--red)" }}>{error}</p>
             </div>
           )}
 
@@ -299,8 +303,8 @@ export function SkillsForm() {
           </div>
 
           {loading && (
-            <p className="text-center text-xs text-slate-500">
-              L'IA analyse ton contexte... ~20 secondes
+            <p className="text-center text-xs" style={{ color: "var(--text3)", fontFamily: "var(--font-mono), monospace" }}>
+              L&apos;IA analyse ton contexte... ~20 secondes
             </p>
           )}
         </div>

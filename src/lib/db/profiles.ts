@@ -2,6 +2,7 @@ import { createClient } from "@/lib/supabase/server"
 
 export async function getOrCreateProfile(userId: string, email: string) {
   const supabase = await createClient()
+  if (!supabase) throw new Error("Supabase not configured")
 
   const { data: existing } = await supabase
     .from("profiles")

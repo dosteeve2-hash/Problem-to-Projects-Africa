@@ -1,35 +1,86 @@
 @import "tailwindcss";
 
-:root {
-  --background: #020617;
-  --foreground: #f8fafc;
+@theme {
+  --color-bg: #070e1f;
+  --color-bg2: #0c1528;
+  --color-bg3: #111d34;
+  --color-text: #f5f0e8;
+  --color-text2: #9ba8c4;
+  --color-text3: #4e5f82;
+  --color-gold: #f0a832;
+  --color-gold-light: #f7c060;
+  --color-gold-dark: #c07d10;
+  --color-cyan: #2dd4ff;
+  --color-green: #22d98a;
+  --color-red: #ef4444;
+  --color-border: #16233d;
+  --color-border2: #1f3054;
+
+  --font-sans: var(--font-outfit), 'Outfit', system-ui, sans-serif;
+  --font-serif: var(--font-playfair), 'Playfair Display', Georgia, serif;
+  --font-mono: var(--font-jetbrains), 'JetBrains Mono', ui-monospace, monospace;
 }
 
-body {
-  background-color: var(--background);
-  color: var(--foreground);
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+:root {
+  --bg: #070e1f;
+  --bg2: #0c1528;
+  --bg3: #111d34;
+  --text: #f5f0e8;
+  --text2: #9ba8c4;
+  --text3: #4e5f82;
+  --gold: #f0a832;
+  --gold2: #f7c060;
+  --gold3: #c07d10;
+  --cyan: #2dd4ff;
+  --green: #22d98a;
+  --red: #ef4444;
+  --border: #16233d;
+  --border2: #1f3054;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 html {
   scroll-behavior: smooth;
 }
 
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-serif);
+  font-style: italic;
+}
+
 ::-webkit-scrollbar {
-  width: 6px;
+  width: 3px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #0f172a;
+  background: var(--bg);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #334155;
-  border-radius: 3px;
+  background: var(--gold);
+  border-radius: 2px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #475569;
+  background: var(--gold2);
+}
+
+::selection {
+  background: var(--gold);
+  color: var(--bg);
 }

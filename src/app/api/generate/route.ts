@@ -51,26 +51,30 @@ export async function POST(request: NextRequest) {
 
   const payload = parsed.data
 
-  // Get current user if authenticated
+  // Get current user if authenticated (optional — works without Supabase)
   const supabase = await createClient()
-  const {
-    data: { user },
-  } = await supabase.auth.getUser()
+  let userId: string | undefined
+  if (supabase) {
+    const { data } = await supabase.auth.getUser()
+    userId = data.user?.id
+  }
 
   try {
-    const [result, submission] = await Promise.all([
-      generateProject(payload),
-      createSubmission(payload, user?.id),
-    ])
+    const result = await generateProject(payload)
 
-    const saved = await saveGeneratedProject(
-      submission.id,
-      result,
-      payload,
-      user?.id
-    )
+    // Try to persist to DB — non-blocking, won't crash if Supabase isn't configured
+    let savedId: string = crypto.randomUUID()
+    try {
+      const [submission] = await Promise.all([
+        createSubmission(payload, userId),
+      ])
+      const saved = await saveGeneratedProject(submission.id, result, payload, userId)
+      savedId = saved.id
+    } catch {
+      // Supabase not configured — return result without persisting
+    }
 
-    return NextResponse.json({ id: saved.id, result })
+    return NextResponse.json({ id: savedId, result })
   } catch (err) {
     const message =
       err instanceof Error ? err.message : "Erreur lors de la génération"

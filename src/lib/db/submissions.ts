@@ -3,6 +3,7 @@ import type { IntakePayload } from "@/types"
 
 export async function createSubmission(payload: IntakePayload, userId?: string) {
   const supabase = await createClient()
+  if (!supabase) throw new Error("Supabase not configured")
 
   const { data, error } = await supabase
     .from("submissions")

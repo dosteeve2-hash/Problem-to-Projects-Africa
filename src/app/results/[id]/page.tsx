@@ -1,7 +1,7 @@
-import { notFound } from "next/navigation"
-import { getGeneratedProject } from "@/lib/db/generated-projects"
 import { createClient } from "@/lib/supabase/server"
+import { getGeneratedProject } from "@/lib/db/generated-projects"
 import { ProjectResultCard } from "@/components/results/ProjectResultCard"
+import { ResultsClientFallback } from "@/components/results/ResultsClientFallback"
 import Link from "next/link"
 import { ArrowLeft } from "lucide-react"
 import type { GeneratedProjectResult } from "@/types"
@@ -18,15 +18,15 @@ export default async function ResultsPage({ params }: ResultsPageProps) {
   try {
     project = await getGeneratedProject(id)
   } catch {
-    notFound()
+    // DB not available — will fall back to sessionStorage on client
   }
 
-  if (!project) notFound()
-
   const supabase = await createClient()
-  const {
-    data: { user },
-  } = await supabase.auth.getUser()
+  let user = null
+  if (supabase) {
+    const { data } = await supabase.auth.getUser()
+    user = data.user
+  }
 
   return (
     <div className="pt-24 pb-20">
@@ -46,11 +46,16 @@ export default async function ResultsPage({ params }: ResultsPageProps) {
           </div>
         </div>
 
-        <ProjectResultCard
-          result={project.result}
-          projectId={project.id}
-          isAuthenticated={!!user}
-        />
+        {project ? (
+          <ProjectResultCard
+            result={project.result}
+            projectId={project.id}
+            isAuthenticated={!!user}
+          />
+        ) : (
+          // DB not configured — load from sessionStorage on the client
+          <ResultsClientFallback id={id} isAuthenticated={!!user} />
+        )}
       </div>
     </div>
   )

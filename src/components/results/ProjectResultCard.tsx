@@ -61,14 +61,14 @@ export function ProjectResultCard({
     <div className="space-y-8">
       {/* Hero card */}
       <Card className="relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-amber-500/5 to-transparent pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-br from-[#f0a832]/5 to-transparent pointer-events-none" />
         <div className="relative">
           <div className="flex items-start justify-between gap-4 flex-wrap">
             <div className="flex-1">
-              <h1 className="text-2xl sm:text-3xl font-extrabold text-white mb-2">
+              <h1 className="text-2xl sm:text-3xl font-extrabold text-[#f5f0e8] mb-2">
                 {result.title}
               </h1>
-              <p className="text-lg text-amber-300 font-medium">{result.one_liner}</p>
+              <p className="text-lg text-[#f7c060] font-medium">{result.one_liner}</p>
             </div>
             <div className="flex items-center gap-2">
               <Button
@@ -92,7 +92,7 @@ export function ProjectResultCard({
           </div>
 
           {saveError && (
-            <p className="mt-2 text-xs text-red-400">{saveError}</p>
+            <p className="mt-2 text-xs text-[#ef4444]">{saveError}</p>
           )}
 
           <div className="mt-4 flex flex-wrap gap-2">
@@ -100,11 +100,11 @@ export function ProjectResultCard({
             <ImpactBadge level={result.impact.level} explanation="" compact />
           </div>
 
-          <div className="mt-6 rounded-xl bg-slate-800/60 border border-slate-700/50 p-4">
-            <h3 className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">
+          <div className="mt-6 rounded-xl bg-[#0c1528] border border-[#1f3054]/50 p-4">
+            <h3 className="text-xs font-semibold text-[#4e5f82] uppercase tracking-wider mb-2">
               Problème résolu
             </h3>
-            <p className="text-sm text-slate-300 leading-relaxed">{result.problem_statement}</p>
+            <p className="text-sm text-[#9ba8c4] leading-relaxed">{result.problem_statement}</p>
           </div>
         </div>
       </Card>
@@ -112,24 +112,24 @@ export function ProjectResultCard({
       <div className="grid md:grid-cols-2 gap-6">
         {/* Pourquoi ce projet */}
         <Card>
-          <h2 className="text-base font-bold text-white mb-4">Pourquoi ce projet ?</h2>
+          <h2 className="text-base font-bold text-[#f5f0e8] mb-4">Pourquoi ce projet ?</h2>
           <div className="space-y-3">
             <div>
-              <p className="text-xs text-slate-500 font-semibold uppercase tracking-wider mb-1">
+              <p className="text-xs text-[#4e5f82] font-semibold uppercase tracking-wider mb-1">
                 Pourquoi maintenant
               </p>
-              <p className="text-sm text-slate-400">{result.why_now}</p>
+              <p className="text-sm text-[#9ba8c4]">{result.why_now}</p>
             </div>
             <div>
-              <p className="text-xs text-slate-500 font-semibold uppercase tracking-wider mb-1">
+              <p className="text-xs text-[#4e5f82] font-semibold uppercase tracking-wider mb-1">
                 Fit local
               </p>
-              <p className="text-sm text-slate-400">{result.why_local_fit}</p>
+              <p className="text-sm text-[#9ba8c4]">{result.why_local_fit}</p>
             </div>
           </div>
 
           <div className="mt-4">
-            <p className="text-xs text-slate-500 font-semibold uppercase tracking-wider mb-2">
+            <p className="text-xs text-[#4e5f82] font-semibold uppercase tracking-wider mb-2">
               Utilisateurs cibles
             </p>
             <div className="flex flex-wrap gap-1.5">
@@ -143,11 +143,11 @@ export function ProjectResultCard({
         {/* Faisabilité & Impact */}
         <div className="space-y-4">
           <Card>
-            <h2 className="text-base font-bold text-white mb-3">Faisabilité</h2>
+            <h2 className="text-base font-bold text-[#f5f0e8] mb-3">Faisabilité</h2>
             <FeasibilityBadge level={result.feasibility.level} explanation={result.feasibility.explanation} />
           </Card>
           <Card>
-            <h2 className="text-base font-bold text-white mb-3">Impact</h2>
+            <h2 className="text-base font-bold text-[#f5f0e8] mb-3">Impact</h2>
             <ImpactBadge level={result.impact.level} explanation={result.impact.explanation} />
           </Card>
         </div>
@@ -156,7 +156,7 @@ export function ProjectResultCard({
       {/* Stack & Requirements */}
       <div className="grid md:grid-cols-2 gap-6">
         <Card>
-          <h2 className="text-base font-bold text-white mb-4">Stack recommandée</h2>
+          <h2 className="text-base font-bold text-[#f5f0e8] mb-4">Stack recommandée</h2>
           <div className="flex flex-wrap gap-2">
             {result.recommended_stack.map((tech, i) => (
               <Badge key={i} variant="amber">{tech}</Badge>
@@ -164,13 +164,13 @@ export function ProjectResultCard({
           </div>
           {result.non_technical_requirements.length > 0 && (
             <div className="mt-4">
-              <p className="text-xs text-slate-500 font-semibold uppercase tracking-wider mb-2">
+              <p className="text-xs text-[#4e5f82] font-semibold uppercase tracking-wider mb-2">
                 Prérequis non-techniques
               </p>
               <ul className="space-y-1">
                 {result.non_technical_requirements.map((req, i) => (
-                  <li key={i} className="flex items-start gap-2 text-sm text-slate-400">
-                    <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-slate-600 shrink-0" />
+                  <li key={i} className="flex items-start gap-2 text-sm text-[#9ba8c4]">
+                    <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-[#1f3054] shrink-0" />
                     {req}
                   </li>
                 ))}
@@ -180,14 +180,14 @@ export function ProjectResultCard({
         </Card>
 
         <Card>
-          <h2 className="text-base font-bold text-white mb-4">Scope MVP</h2>
+          <h2 className="text-base font-bold text-[#f5f0e8] mb-4">Scope MVP</h2>
           <ul className="space-y-2">
             {result.mvp_scope.map((feature, i) => (
               <li key={i} className="flex items-start gap-2.5">
-                <span className="mt-1 w-4 h-4 rounded-full bg-amber-500/20 border border-amber-500/30 flex items-center justify-center shrink-0">
-                  <span className="w-1.5 h-1.5 rounded-full bg-amber-400" />
+                <span className="mt-1 w-4 h-4 rounded-full bg-[#f0a832]/20 border border-[#f0a832]/30 flex items-center justify-center shrink-0">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#f0a832]" />
                 </span>
-                <span className="text-sm text-slate-300">{feature}</span>
+                <span className="text-sm text-[#9ba8c4]">{feature}</span>
               </li>
             ))}
           </ul>
@@ -196,24 +196,27 @@ export function ProjectResultCard({
 
       {/* Roadmap */}
       <Card>
-        <h2 className="text-base font-bold text-white mb-6">
-          Plan d'action — 30 jours
+        <h2 className="text-base font-bold text-[#f5f0e8] mb-6">
+          Plan d&apos;action — 30 jours
         </h2>
         <RoadmapTimeline roadmap={result.roadmap_30_days} />
       </Card>
 
       {/* Next action */}
-      <div className="rounded-2xl border border-amber-500/30 bg-amber-500/8 p-6">
-        <p className="text-xs font-semibold text-amber-400 uppercase tracking-wider mb-2">
-          ⚡ Ton prochain pas dès aujourd'hui
+      <div className="rounded-2xl border border-[#f0a832]/30 bg-[#f0a832]/8 p-6">
+        <p
+          className="text-xs font-semibold text-[#f0a832] uppercase tracking-wider mb-2"
+          style={{ fontFamily: "var(--font-mono), monospace" }}
+        >
+          ⚡ Ton prochain pas dès aujourd&apos;hui
         </p>
-        <p className="text-base text-white font-medium">{result.next_best_action}</p>
+        <p className="text-base text-[#f5f0e8] font-medium">{result.next_best_action}</p>
       </div>
 
       {/* Skills to strengthen */}
       {result.skills_to_strengthen.length > 0 && (
         <Card>
-          <h2 className="text-base font-bold text-white mb-3">
+          <h2 className="text-base font-bold text-[#f5f0e8] mb-3">
             Compétences à renforcer
           </h2>
           <div className="flex flex-wrap gap-2">
@@ -226,7 +229,7 @@ export function ProjectResultCard({
 
       {/* Alternatives */}
       <Card>
-        <h2 className="text-base font-bold text-white mb-4">Projets alternatifs</h2>
+        <h2 className="text-base font-bold text-[#f5f0e8] mb-4">Projets alternatifs</h2>
         <AlternativesList alternatives={result.project_alternatives} />
       </Card>
     </div>

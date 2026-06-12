@@ -3,6 +3,7 @@
 import { useState } from "react"
 import { useRouter } from "next/navigation"
 import { Plus, X } from "lucide-react"
+import { storeResult } from "@/lib/session-store"
 import { CountrySelector } from "./CountrySelector"
 import { SectorSelector } from "./SectorSelector"
 import { Input } from "@/components/ui/Input"
@@ -83,6 +84,7 @@ export function ProblemForm() {
         return
       }
 
+      storeResult(data.id, data.result)
       router.push(`/results/${data.id}`)
     } catch {
       setError("Erreur réseau. Vérifie ta connexion.")
@@ -96,14 +98,14 @@ export function ProblemForm() {
   return (
     <div className="space-y-6">
       <div className="space-y-2">
-        <div className="flex justify-between text-xs text-slate-500">
+        <div className="flex justify-between text-xs" style={{ color: "var(--text3)", fontFamily: "var(--font-mono)" }}>
           <span>Étape {step} sur 2</span>
           <span>{progressPercent}%</span>
         </div>
-        <div className="h-1.5 w-full rounded-full bg-slate-800">
+        <div className="h-1.5 w-full rounded-full" style={{ background: "var(--border2)" }}>
           <div
-            className="h-full rounded-full bg-blue-500 transition-all duration-500"
-            style={{ width: `${progressPercent}%` }}
+            className="h-full rounded-full transition-all duration-500"
+            style={{ width: `${progressPercent}%`, background: "var(--gold)" }}
           />
         </div>
       </div>
@@ -124,7 +126,7 @@ export function ProblemForm() {
           <SectorSelector value={sector} onChange={setSector} error={errors.sector} />
 
           <div className="flex flex-col gap-1.5">
-            <label className="text-sm font-medium text-slate-300">Ton niveau</label>
+            <label className="text-sm font-medium" style={{ color: "var(--text2)" }}>Ton niveau</label>
             <div className="grid grid-cols-3 gap-2">
               {(["beginner", "intermediate", "advanced"] as const).map((level) => {
                 const labels = { beginner: "Débutant", intermediate: "Intermédiaire", advanced: "Avancé" }
@@ -133,12 +135,15 @@ export function ProblemForm() {
                     key={level}
                     type="button"
                     onClick={() => setUserLevel(level)}
-                    className={[
-                      "rounded-xl border px-3 py-2.5 text-sm font-medium transition-all",
-                      userLevel === level
-                        ? "border-blue-500 bg-blue-500/10 text-white"
-                        : "border-slate-700 text-slate-400 hover:border-slate-600 hover:text-white",
-                    ].join(" ")}
+                    className="rounded-xl px-3 py-2.5 text-sm font-medium transition-all cursor-pointer"
+                    style={userLevel === level ? {
+                      border: "1px solid rgba(240,168,50,0.6)",
+                      background: "rgba(240,168,50,0.1)",
+                      color: "var(--text)",
+                    } : {
+                      border: "1px solid var(--border2)",
+                      color: "var(--text2)",
+                    }}
                   >
                     {labels[level]}
                   </button>
@@ -149,7 +154,7 @@ export function ProblemForm() {
 
           <Button
             onClick={() => validateStep1() && setStep(2)}
-            className="w-full bg-blue-600 hover:bg-blue-700 shadow-blue-600/25"
+            className="w-full"
           >
             Continuer
           </Button>
@@ -177,7 +182,7 @@ export function ProblemForm() {
           />
 
           <div className="flex flex-col gap-1.5">
-            <label className="text-sm font-medium text-slate-300">
+            <label className="text-sm font-medium" style={{ color: "var(--text2)" }}>
               Tes contraintes personnelles (optionnel)
             </label>
             <div className="flex gap-2">
@@ -197,11 +202,12 @@ export function ProblemForm() {
                 {constraints.map((c) => (
                   <span
                     key={c}
-                    className="inline-flex items-center gap-1.5 rounded-full bg-slate-800 border border-slate-700 px-3 py-1 text-xs font-medium text-slate-300"
+                    className="inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-medium"
+                    style={{ background: "var(--bg3)", border: "1px solid var(--border2)", color: "var(--text2)" }}
                   >
                     {c}
-                    <button onClick={() => setConstraints(constraints.filter((x) => x !== c))}>
-                      <X className="h-3 w-3 text-slate-400 hover:text-white" />
+                    <button onClick={() => setConstraints(constraints.filter((x) => x !== c))} className="cursor-pointer">
+                      <X className="h-3 w-3" style={{ color: "var(--text3)" }} />
                     </button>
                   </span>
                 ))}
@@ -210,8 +216,11 @@ export function ProblemForm() {
           </div>
 
           {error && (
-            <div className="rounded-xl border border-red-500/30 bg-red-500/10 px-4 py-3">
-              <p className="text-sm text-red-400">{error}</p>
+            <div
+              className="rounded-xl px-4 py-3"
+              style={{ border: "1px solid rgba(239,68,68,0.3)", background: "rgba(239,68,68,0.08)" }}
+            >
+              <p className="text-sm" style={{ color: "var(--red)" }}>{error}</p>
             </div>
           )}
 
@@ -222,7 +231,7 @@ export function ProblemForm() {
             <Button
               onClick={handleSubmit}
               loading={loading}
-              className="flex-1 bg-blue-600 hover:bg-blue-700 shadow-blue-600/25"
+              className="flex-1"
             >
               {loading ? "Transformation en cours..." : "Transformer en projet"}
             </Button>

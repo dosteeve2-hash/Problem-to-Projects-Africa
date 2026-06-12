@@ -8,6 +8,7 @@ export async function saveGeneratedProject(
   userId?: string
 ) {
   const supabase = await createClient()
+  if (!supabase) throw new Error("Supabase not configured")
 
   const { data, error } = await supabase
     .from("generated_projects")
@@ -30,6 +31,7 @@ export async function saveGeneratedProject(
 
 export async function getGeneratedProject(id: string) {
   const supabase = await createClient()
+  if (!supabase) throw new Error("Supabase not configured")
 
   const { data, error } = await supabase
     .from("generated_projects")
@@ -43,6 +45,7 @@ export async function getGeneratedProject(id: string) {
 
 export async function getUserProjects(userId: string) {
   const supabase = await createClient()
+  if (!supabase) throw new Error("Supabase not configured")
 
   const { data, error } = await supabase
     .from("generated_projects")

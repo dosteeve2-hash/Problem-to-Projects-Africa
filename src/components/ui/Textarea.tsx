@@ -15,7 +15,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
         {label && (
           <label
             htmlFor={textareaId}
-            className="text-sm font-medium text-slate-300"
+            className="text-sm font-medium text-[#9ba8c4]"
           >
             {label}
           </label>
@@ -24,18 +24,18 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
           ref={ref}
           id={textareaId}
           className={[
-            "w-full rounded-xl border bg-slate-800/60 px-4 py-3 text-sm text-white placeholder-slate-500 resize-none",
+            "w-full rounded-xl border bg-[#111d34] px-4 py-3 text-sm text-[#f5f0e8] placeholder-[#4e5f82] resize-none",
             "transition-colors duration-200",
-            "focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent",
+            "focus:outline-none focus:ring-2 focus:ring-[#f0a832] focus:border-transparent",
             error
-              ? "border-red-500/60"
-              : "border-slate-700 hover:border-slate-600",
+              ? "border-[#ef4444]/60"
+              : "border-[#1f3054] hover:border-[#f0a832]/40",
             className,
           ].join(" ")}
           {...props}
         />
-        {error && <p className="text-xs text-red-400">{error}</p>}
-        {hint && !error && <p className="text-xs text-slate-500">{hint}</p>}
+        {error && <p className="text-xs text-[#ef4444]">{error}</p>}
+        {hint && !error && <p className="text-xs text-[#4e5f82]">{hint}</p>}
       </div>
     )
   }

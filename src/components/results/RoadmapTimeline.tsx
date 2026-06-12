@@ -22,7 +22,7 @@ export function RoadmapTimeline({ roadmap }: RoadmapTimelineProps) {
           {/* Timeline line */}
           <div className="flex flex-col items-center">
             <div
-              className={`w-8 h-8 rounded-full border-2 ${week.color} flex items-center justify-center text-xs font-bold text-white shrink-0`}
+              className={`w-8 h-8 rounded-full border-2 ${week.color} flex items-center justify-center text-xs font-bold text-[#070e1f] shrink-0`}
             >
               {idx + 1}
             </div>

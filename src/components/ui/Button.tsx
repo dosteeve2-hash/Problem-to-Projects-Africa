@@ -20,7 +20,7 @@ const variantClasses: Record<Variant, string> = {
     "bg-[#111d34] hover:bg-[#0c1528] text-[#f5f0e8] border border-[#1f3054] hover:border-[#f0a832]/40",
   ghost:
     "bg-transparent hover:bg-[#111d34] text-[#9ba8c4] hover:text-[#f5f0e8] border border-[#1f3054] hover:border-[#f0a832]/40",
-  danger: "bg-[#ef4444] hover:bg-[#dc2626] text-white",
+  danger: "bg-[#ef4444] hover:bg-[#dc2626] text-[#f5f0e8]",
 }
 
 const sizeClasses: Record<Size, string> = {

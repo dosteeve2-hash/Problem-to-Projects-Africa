@@ -16,22 +16,24 @@ export function AlternativesList({ alternatives }: AlternativesListProps) {
       {alternatives.map((alt, i) => (
         <div
           key={i}
-          className="rounded-xl border border-slate-800 bg-slate-900/40 p-4 flex items-start gap-3"
+          className="rounded-xl p-4 flex items-start gap-3"
+          style={{ border: "1px solid var(--border)", background: "var(--bg3)" }}
         >
-          <div className="w-6 h-6 rounded-full bg-slate-800 flex items-center justify-center shrink-0 mt-0.5">
-            <span className="text-xs font-bold text-slate-400">{i + 1}</span>
+          <div className="w-6 h-6 rounded-full flex items-center justify-center shrink-0 mt-0.5" style={{ background: "var(--bg2)" }}>
+            <span className="text-xs font-bold" style={{ color: "var(--text3)", fontFamily: "var(--font-mono), monospace" }}>{i + 1}</span>
           </div>
           <div>
-            <p className="text-sm font-semibold text-white">{alt.title}</p>
-            <p className="text-xs text-slate-500 mt-0.5">{alt.one_liner}</p>
+            <p className="text-sm font-semibold" style={{ color: "var(--text)" }}>{alt.title}</p>
+            <p className="text-xs mt-0.5" style={{ color: "var(--text3)" }}>{alt.one_liner}</p>
           </div>
         </div>
       ))}
 
-      <div className="mt-4 pt-4 border-t border-slate-800">
+      <div className="mt-4 pt-4" style={{ borderTop: "1px solid var(--border)" }}>
         <Link
           href="/start"
-          className="flex items-center gap-2 text-sm text-slate-400 hover:text-amber-400 transition-colors"
+          className="flex items-center gap-2 text-sm transition-colors"
+          style={{ color: "var(--text3)" }}
         >
           <RefreshCw className="h-4 w-4" />
           Générer un projet avec un autre contexte

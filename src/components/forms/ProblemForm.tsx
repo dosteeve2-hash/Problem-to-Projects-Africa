@@ -238,7 +238,7 @@ export function ProblemForm() {
           </div>
 
           {loading && (
-            <p className="text-center text-xs text-slate-500">
+            <p className="text-center text-xs" style={{ color: "var(--text3)", fontFamily: "var(--font-mono)" }}>
               L'IA analyse le problème... ~20 secondes
             </p>
           )}

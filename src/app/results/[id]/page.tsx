@@ -34,15 +34,19 @@ export default async function ResultsPage({ params }: ResultsPageProps) {
         <div className="mb-8">
           <Link
             href="/start"
-            className="inline-flex items-center gap-2 text-sm text-slate-500 hover:text-white transition-colors mb-6"
+            className="inline-flex items-center gap-2 text-sm transition-colors mb-6"
+            style={{ color: "var(--text3)" }}
           >
             <ArrowLeft className="h-4 w-4" />
             Générer un nouveau projet
           </Link>
 
-          <div className="inline-flex items-center gap-2 rounded-full bg-emerald-500/10 border border-emerald-500/20 px-3 py-1 mb-4">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
-            <span className="text-xs font-medium text-emerald-400">Projet généré</span>
+          <div
+            className="inline-flex items-center gap-2 rounded-full px-3 py-1 mb-4"
+            style={{ background: "rgba(34,217,138,0.1)", border: "1px solid rgba(34,217,138,0.2)" }}
+          >
+            <span className="w-1.5 h-1.5 rounded-full" style={{ background: "var(--green)" }} />
+            <span className="text-xs font-medium" style={{ color: "var(--green)", fontFamily: "var(--font-mono), monospace" }}>Projet généré</span>
           </div>
         </div>
 

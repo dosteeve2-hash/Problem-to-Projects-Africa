@@ -34,16 +34,20 @@ export function ResultsClientFallback({ id, isAuthenticated }: Props) {
   if (!result) {
     return (
       <div className="flex flex-col items-center justify-center py-24 text-center">
-        <div className="inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-amber-500/10 border border-amber-500/20 mb-4">
-          <AlertTriangle className="h-7 w-7 text-amber-400" />
+        <div
+          className="inline-flex h-14 w-14 items-center justify-center rounded-2xl mb-4"
+          style={{ background: "rgba(240,168,50,0.1)", border: "1px solid rgba(240,168,50,0.2)" }}
+        >
+          <AlertTriangle className="h-7 w-7" style={{ color: "var(--gold)" }} />
         </div>
-        <h2 className="text-xl font-bold text-white mb-2">Résultat introuvable</h2>
-        <p className="text-slate-400 text-sm max-w-sm mb-6">
-          Ce résultat n'est plus disponible. Configure Supabase pour sauvegarder tes projets, ou génère-en un nouveau.
+        <h2 className="text-xl font-bold mb-2" style={{ color: "var(--text)", fontFamily: "var(--font-serif), serif", fontStyle: "italic" }}>Résultat introuvable</h2>
+        <p className="text-sm max-w-sm mb-6" style={{ color: "var(--text2)" }}>
+          Ce résultat n&apos;est plus disponible. Configure Supabase pour sauvegarder tes projets, ou génère-en un nouveau.
         </p>
         <Link
           href="/start"
-          className="inline-flex items-center gap-2 rounded-xl bg-amber-500 px-5 py-2.5 text-sm font-semibold text-slate-950 hover:bg-amber-400 transition-colors"
+          className="inline-flex items-center gap-2 rounded-xl px-5 py-2.5 text-sm font-semibold transition-colors"
+          style={{ background: "var(--gold)", color: "var(--bg)" }}
         >
           Générer un nouveau projet
         </Link>

@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 160" role="img" aria-label="Problem to Project Africa">
+  <defs>
+    <linearGradient id="ppaGold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f7c060"/>
+      <stop offset="1" stop-color="#c07d10"/>
+    </linearGradient>
+    <linearGradient id="ppaDark" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#111d34"/>
+      <stop offset="1" stop-color="#070e1f"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Icône : silhouette d'Afrique stylisée + flèche idée→projet -->
+  <g>
+    <rect x="18" y="18" width="124" height="124" rx="28" fill="url(#ppaDark)"/>
+    <rect x="18" y="18" width="124" height="124" rx="28" fill="none" stroke="url(#ppaGold)" stroke-width="2" opacity=".5"/>
+    <!-- Afrique stylisée (formes géométriques simples) -->
+    <path d="M62 38 L96 38 L104 50 L100 66 L108 80 L96 108 L84 122 L76 108 L66 96 L56 72 L52 52 Z"
+          fill="none" stroke="#f0a832" stroke-width="5" stroke-linejoin="round" opacity=".95"/>
+    <!-- Étincelle problème (point) qui devient trajectoire projet (flèche) -->
+    <circle cx="70" cy="62" r="6" fill="#2dd4ff"/>
+    <path d="M70 62 Q92 58 108 42" fill="none" stroke="#2dd4ff" stroke-width="5" stroke-linecap="round" stroke-dasharray="1 9"/>
+    <path d="M108 42 L96 42 M108 42 L108 54" stroke="#2dd4ff" stroke-width="5" stroke-linecap="round" fill="none"/>
+  </g>
+
+  <!-- Wordmark -->
+  <g font-family="Outfit, 'Segoe UI', sans-serif">
+    <text x="168" y="72" font-size="40" font-weight="800" letter-spacing="-1" fill="#f5f0e8">Problem <tspan fill="#f0a832">to</tspan> Project</text>
+    <text x="168" y="118" font-size="40" font-weight="800" letter-spacing="6" fill="#f0a832">AFRICA</text>
+  </g>
+</svg>

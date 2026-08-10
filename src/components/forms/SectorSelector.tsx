@@ -38,7 +38,7 @@ export function SectorSelector({ value, onChange, error }: SectorSelectorProps) 
             className="flex items-center gap-2 rounded-xl border px-3 py-2.5 text-left transition-all duration-200"
             style={
               value === sector.id
-                ? { borderColor: "var(--gold)", background: "rgba(240,168,50,0.1)", color: "var(--text)" }
+                ? { borderColor: "var(--gold)", background: "rgba(212,175,55,0.1)", color: "var(--text)" }
                 : { borderColor: "var(--border2)", background: "var(--bg3)", color: "var(--text2)" }
             }
           >

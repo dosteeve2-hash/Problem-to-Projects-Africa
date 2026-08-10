@@ -61,14 +61,14 @@ export function ProjectResultCard({
     <div className="space-y-8">
       {/* Hero card */}
       <Card className="relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-[#f0a832]/5 to-transparent pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-br from-[#D4AF37]/5 to-transparent pointer-events-none" />
         <div className="relative">
           <div className="flex items-start justify-between gap-4 flex-wrap">
             <div className="flex-1">
               <h1 className="text-2xl sm:text-3xl font-extrabold text-[#f5f0e8] mb-2">
                 {result.title}
               </h1>
-              <p className="text-lg text-[#f7c060] font-medium">{result.one_liner}</p>
+              <p className="text-lg text-[#F5D67A] font-medium">{result.one_liner}</p>
             </div>
             <div className="flex items-center gap-2">
               <Button
@@ -100,7 +100,7 @@ export function ProjectResultCard({
             <ImpactBadge level={result.impact.level} explanation="" compact />
           </div>
 
-          <div className="mt-6 rounded-xl bg-[#0c1528] border border-[#1f3054]/50 p-4">
+          <div className="mt-6 rounded-xl bg-[#0e1f3d] border border-[#1f3054]/50 p-4">
             <h3 className="text-xs font-semibold text-[#4e5f82] uppercase tracking-wider mb-2">
               Problème résolu
             </h3>
@@ -184,8 +184,8 @@ export function ProjectResultCard({
           <ul className="space-y-2">
             {result.mvp_scope.map((feature, i) => (
               <li key={i} className="flex items-start gap-2.5">
-                <span className="mt-1 w-4 h-4 rounded-full bg-[#f0a832]/20 border border-[#f0a832]/30 flex items-center justify-center shrink-0">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#f0a832]" />
+                <span className="mt-1 w-4 h-4 rounded-full bg-[#D4AF37]/20 border border-[#D4AF37]/30 flex items-center justify-center shrink-0">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#D4AF37]" />
                 </span>
                 <span className="text-sm text-[#9ba8c4]">{feature}</span>
               </li>
@@ -203,9 +203,9 @@ export function ProjectResultCard({
       </Card>
 
       {/* Next action */}
-      <div className="rounded-2xl border border-[#f0a832]/30 bg-[#f0a832]/8 p-6">
+      <div className="rounded-2xl border border-[#D4AF37]/30 bg-[#D4AF37]/8 p-6">
         <p
-          className="text-xs font-semibold text-[#f0a832] uppercase tracking-wider mb-2"
+          className="text-xs font-semibold text-[#D4AF37] uppercase tracking-wider mb-2"
           style={{ fontFamily: "var(--font-mono), monospace" }}
         >
           ⚡ Ton prochain pas dès aujourd&apos;hui

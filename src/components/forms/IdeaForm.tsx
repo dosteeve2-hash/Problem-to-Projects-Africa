@@ -129,7 +129,7 @@ export function IdeaForm() {
                     className="rounded-xl border px-3 py-2.5 text-sm font-medium transition-all"
                     style={
                       userLevel === level
-                        ? { borderColor: "var(--gold)", background: "rgba(240,168,50,0.1)", color: "var(--text)" }
+                        ? { borderColor: "var(--gold)", background: "rgba(212,175,55,0.1)", color: "var(--text)" }
                         : { borderColor: "var(--border2)", color: "var(--text2)" }
                     }
                   >

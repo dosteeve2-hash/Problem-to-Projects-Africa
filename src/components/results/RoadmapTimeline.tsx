@@ -8,9 +8,9 @@ type RoadmapTimelineProps = {
 }
 
 const weeks = [
-  { key: "week_1" as const, label: "Semaine 1", color: "border-[#f0a832] bg-[#f0a832]" },
-  { key: "week_2" as const, label: "Semaine 2", color: "border-[#2dd4ff] bg-[#2dd4ff]" },
-  { key: "week_3" as const, label: "Semaine 3", color: "border-[#f7c060] bg-[#f7c060]" },
+  { key: "week_1" as const, label: "Semaine 1", color: "border-[#D4AF37] bg-[#D4AF37]" },
+  { key: "week_2" as const, label: "Semaine 2", color: "border-[#00BCD4] bg-[#00BCD4]" },
+  { key: "week_3" as const, label: "Semaine 3", color: "border-[#F5D67A] bg-[#F5D67A]" },
   { key: "week_4" as const, label: "Semaine 4", color: "border-[#22d98a] bg-[#22d98a]" },
 ]
 
@@ -22,7 +22,7 @@ export function RoadmapTimeline({ roadmap }: RoadmapTimelineProps) {
           {/* Timeline line */}
           <div className="flex flex-col items-center">
             <div
-              className={`w-8 h-8 rounded-full border-2 ${week.color} flex items-center justify-center text-xs font-bold text-[#070e1f] shrink-0`}
+              className={`w-8 h-8 rounded-full border-2 ${week.color} flex items-center justify-center text-xs font-bold text-[#0A1628] shrink-0`}
             >
               {idx + 1}
             </div>

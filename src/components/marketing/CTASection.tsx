@@ -9,8 +9,8 @@ export function CTASection() {
         <div
           className="rounded-3xl p-12"
           style={{
-            border: "1px solid rgba(240,168,50,0.2)",
-            background: "linear-gradient(135deg, rgba(240,168,50,0.08), rgba(7,14,31,0.9))",
+            border: "1px solid rgba(212,175,55,0.2)",
+            background: "linear-gradient(135deg, rgba(212,175,55,0.08), rgba(10,22,40,0.9))",
           }}
         >
           <h2

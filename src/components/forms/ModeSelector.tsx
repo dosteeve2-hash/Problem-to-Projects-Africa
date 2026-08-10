@@ -13,7 +13,7 @@ const modes = [
     description:
       "Tu as des skills concrets — développement, agriculture, commerce, design, langues... P2P Africa trouve le projet qui correspond exactement à ce que tu sais faire.",
     tag: "Mode Skills",
-    accent: "#f0a832",
+    accent: "#D4AF37",
   },
   {
     href: "/start/idea",
@@ -23,7 +23,7 @@ const modes = [
     description:
       "Tu as une idée qui germe. P2P Africa l'analyse sous l'angle de la faisabilité, de l'impact local, et te propose un plan pour la concrétiser.",
     tag: "Mode Idée",
-    accent: "#2dd4ff",
+    accent: "#00BCD4",
   },
   {
     href: "/start/problem",
@@ -50,7 +50,7 @@ export function ModeSelector() {
           >
             <Link
               href={mode.href}
-              className="group block h-full rounded-2xl border border-[#1f3054] bg-[#111d34] p-6 transition-all duration-300 hover:border-[#f0a832]/60 hover:bg-[#0c1528] hover:shadow-xl"
+              className="group block h-full rounded-2xl border border-[#1f3054] bg-[#142b52] p-6 transition-all duration-300 hover:border-[#D4AF37]/60 hover:bg-[#0e1f3d] hover:shadow-xl"
             >
               <div className="flex items-start justify-between mb-5">
                 <div
@@ -87,7 +87,7 @@ export function ModeSelector() {
                 {mode.description}
               </p>
 
-              <div className="mt-5 flex items-center gap-1 text-sm font-semibold text-[#4e5f82] group-hover:text-[#f0a832] transition-colors">
+              <div className="mt-5 flex items-center gap-1 text-sm font-semibold text-[#4e5f82] group-hover:text-[#D4AF37] transition-colors">
                 <span style={{ fontFamily: "var(--font-jetbrains), monospace" }}>Choisir ce mode</span>
                 <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
               </div>

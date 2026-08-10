@@ -15,9 +15,9 @@ const levelConfig = {
   },
   medium: {
     label: "Faisabilité moyenne",
-    color: "text-[#f0a832]",
-    bg: "bg-[#f0a832]/10 border-[#f0a832]/20",
-    dot: "bg-[#f0a832]",
+    color: "text-[#D4AF37]",
+    bg: "bg-[#D4AF37]/10 border-[#D4AF37]/20",
+    dot: "bg-[#D4AF37]",
   },
   high: {
     label: "Faisabilité élevée",

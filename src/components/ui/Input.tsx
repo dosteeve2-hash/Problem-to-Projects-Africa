@@ -24,12 +24,12 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
           ref={ref}
           id={inputId}
           className={[
-            "w-full rounded-xl border bg-[#111d34] px-4 py-2.5 text-sm text-[#f5f0e8] placeholder-[#4e5f82]",
+            "w-full rounded-xl border bg-[#142b52] px-4 py-2.5 text-sm text-[#f5f0e8] placeholder-[#4e5f82]",
             "transition-colors duration-200",
-            "focus:outline-none focus:ring-2 focus:ring-[#f0a832] focus:border-transparent",
+            "focus:outline-none focus:ring-2 focus:ring-[#D4AF37] focus:border-transparent",
             error
               ? "border-[#ef4444]/60"
-              : "border-[#1f3054] hover:border-[#f0a832]/40",
+              : "border-[#1f3054] hover:border-[#D4AF37]/40",
             className,
           ].join(" ")}
           {...props}

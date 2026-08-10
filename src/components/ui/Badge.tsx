@@ -7,11 +7,11 @@ type BadgeProps = {
 }
 
 const variantClasses: Record<BadgeVariant, string> = {
-  amber: "bg-[#f0a832]/15 text-[#f0a832] border border-[#f0a832]/20",
+  amber: "bg-[#D4AF37]/15 text-[#D4AF37] border border-[#D4AF37]/20",
   green: "bg-[#22d98a]/15 text-[#22d98a] border border-[#22d98a]/20",
   red: "bg-[#ef4444]/15 text-[#ef4444] border border-[#ef4444]/20",
   slate: "bg-[#1f3054]/60 text-[#9ba8c4] border border-[#1f3054]",
-  blue: "bg-[#2dd4ff]/15 text-[#2dd4ff] border border-[#2dd4ff]/20",
+  blue: "bg-[#00BCD4]/15 text-[#00BCD4] border border-[#00BCD4]/20",
 }
 
 export function Badge({ variant = "slate", children, className = "" }: BadgeProps) {

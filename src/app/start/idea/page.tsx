@@ -7,7 +7,7 @@ export default function IdeaPage() {
         <div className="mb-8">
           <div
             className="inline-flex items-center gap-2 rounded-full px-3 py-1 mb-4"
-            style={{ background: "rgba(45,212,255,0.1)", border: "1px solid rgba(45,212,255,0.2)" }}
+            style={{ background: "rgba(0,188,212,0.1)", border: "1px solid rgba(0,188,212,0.2)" }}
           >
             <span
               className="text-xs font-medium"

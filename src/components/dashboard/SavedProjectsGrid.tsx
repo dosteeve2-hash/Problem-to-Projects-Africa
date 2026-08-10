@@ -26,7 +26,7 @@ export function SavedProjectsGrid({ projects }: SavedProjectsGridProps) {
       >
         <div
           className="w-12 h-12 rounded-2xl flex items-center justify-center mb-4"
-          style={{ background: "rgba(240,168,50,0.1)", border: "1px solid rgba(240,168,50,0.2)" }}
+          style={{ background: "rgba(212,175,55,0.1)", border: "1px solid rgba(212,175,55,0.2)" }}
         >
           <Layers className="h-6 w-6" style={{ color: "var(--gold)" }} />
         </div>

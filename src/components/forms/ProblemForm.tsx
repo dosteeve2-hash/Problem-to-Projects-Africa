@@ -137,8 +137,8 @@ export function ProblemForm() {
                     onClick={() => setUserLevel(level)}
                     className="rounded-xl px-3 py-2.5 text-sm font-medium transition-all cursor-pointer"
                     style={userLevel === level ? {
-                      border: "1px solid rgba(240,168,50,0.6)",
-                      background: "rgba(240,168,50,0.1)",
+                      border: "1px solid rgba(212,175,55,0.6)",
+                      background: "rgba(212,175,55,0.1)",
                       color: "var(--text)",
                     } : {
                       border: "1px solid var(--border2)",

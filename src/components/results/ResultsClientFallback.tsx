@@ -36,7 +36,7 @@ export function ResultsClientFallback({ id, isAuthenticated }: Props) {
       <div className="flex flex-col items-center justify-center py-24 text-center">
         <div
           className="inline-flex h-14 w-14 items-center justify-center rounded-2xl mb-4"
-          style={{ background: "rgba(240,168,50,0.1)", border: "1px solid rgba(240,168,50,0.2)" }}
+          style={{ background: "rgba(212,175,55,0.1)", border: "1px solid rgba(212,175,55,0.2)" }}
         >
           <AlertTriangle className="h-7 w-7" style={{ color: "var(--gold)" }} />
         </div>

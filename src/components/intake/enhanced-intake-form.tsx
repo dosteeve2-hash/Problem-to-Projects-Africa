@@ -10,9 +10,17 @@ import {
   SelectItem,
 } from "@/components/ui/select";
 import { Card } from "@/components/ui/card";
+import { pickOption } from "@/lib/utils";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
 import { Slider } from "@/components/ui/slider";
+
+// Options des <select> : une seule source pour la valeur par défaut, le type du
+// champ et la validation de ce que le navigateur renvoie.
+const SKILL_LEVELS = ["beginner", "intermediate", "advanced"] as const;
+const TIME_AVAILABLE = ["part-time", "full-time", "weekends"] as const;
+const GOALS = ["income", "impact", "learning", "growth"] as const;
+const TIMEFRAMES = ["3-months", "6-months", "1-year", "2-years"] as const;
 
 interface EnhancedIntakeFormProps {
   mode: "skills" | "idea" | "problem";
@@ -34,7 +42,7 @@ export function EnhancedIntakeForm({ mode }: EnhancedIntakeFormProps) {
     // Étape 2: Contexte spécifique au mode
     // Pour "skills"
     skills: [] as string[],
-    skillsLevel: "intermediate" as "beginner" | "intermediate" | "advanced",
+    skillsLevel: "intermediate" as (typeof SKILL_LEVELS)[number],
     yearsExperience: 0,
 
     // Pour "idea"
@@ -51,14 +59,14 @@ export function EnhancedIntakeForm({ mode }: EnhancedIntakeFormProps) {
 
     // Étape 3: Ressources et contraintes
     budget: 0,
-    timeAvailable: "part-time" as "part-time" | "full-time" | "weekends",
+    timeAvailable: "part-time" as (typeof TIME_AVAILABLE)[number],
     teamSize: 1,
     hasEquipment: false,
     hasNetwork: false,
 
     // Étape 4: Ambitions et objectifs
-    goal: "income" as "income" | "impact" | "learning" | "growth",
-    timeframe: "6-months" as "3-months" | "6-months" | "1-year" | "2-years",
+    goal: "income" as (typeof GOALS)[number],
+    timeframe: "6-months" as (typeof TIMEFRAMES)[number],
     expectedRevenue: 0,
     riskTolerance: 5,
 
@@ -123,7 +131,7 @@ export function EnhancedIntakeForm({ mode }: EnhancedIntakeFormProps) {
       
       // Rediriger vers la page de résultats enrichis
       router.push(`/results?projectId=${analysis.projectId}`);
-    } catch (error) {
+    } catch {
       setErrors({ submit: "Erreur lors de l'analyse du projet" });
     } finally {
       setLoading(false);
@@ -195,7 +203,7 @@ export function EnhancedIntakeForm({ mode }: EnhancedIntakeFormProps) {
           </div>
 
           <div>
-            <Label>Secteur d'activité</Label>
+            <Label>Secteur d’activité</Label>
             <Select
               value={formData.sector}
               onChange={(e) =>
@@ -249,8 +257,11 @@ export function EnhancedIntakeForm({ mode }: EnhancedIntakeFormProps) {
                 <Label>Niveau de compétence</Label>
                 <Select
                   value={formData.skillsLevel}
-                  onChange={(e: any) =>
-                    setFormData({ ...formData, skillsLevel: e.target.value })
+                  onChange={(e) =>
+                    setFormData({
+                      ...formData,
+                      skillsLevel: pickOption(e.target.value, SKILL_LEVELS, formData.skillsLevel),
+                    })
                   }
                 >
                   <SelectItem value="beginner">Débutant</SelectItem>
@@ -260,7 +271,7 @@ export function EnhancedIntakeForm({ mode }: EnhancedIntakeFormProps) {
               </div>
 
               <div>
-                <Label>Années d'expérience</Label>
+                <Label>Années d’expérience</Label>
                 <Input
                   type="number"
                   value={formData.yearsExperience}
@@ -415,8 +426,11 @@ export function EnhancedIntakeForm({ mode }: EnhancedIntakeFormProps) {
             <Label>Temps disponible</Label>
             <Select
               value={formData.timeAvailable}
-              onChange={(e: any) =>
-                setFormData({ ...formData, timeAvailable: e.target.value })
+              onChange={(e) =>
+                setFormData({
+                      ...formData,
+                      timeAvailable: pickOption(e.target.value, TIME_AVAILABLE, formData.timeAvailable),
+                    })
               }
             >
               <SelectItem value="weekends">Weekends uniquement</SelectItem>
@@ -426,7 +440,7 @@ export function EnhancedIntakeForm({ mode }: EnhancedIntakeFormProps) {
           </div>
 
           <div>
-            <Label>Taille de l'équipe</Label>
+            <Label>Taille de l’équipe</Label>
             <Input
               type="number"
               value={formData.teamSize}
@@ -449,7 +463,7 @@ export function EnhancedIntakeForm({ mode }: EnhancedIntakeFormProps) {
                   setFormData({ ...formData, hasEquipment: e.target.checked })
                 }
               />
-              <Label htmlFor="equipment">Vous avez déjà l'équipement nécessaire</Label>
+              <Label htmlFor="equipment">Vous avez déjà l’équipement nécessaire</Label>
             </div>
 
             <div className="flex items-center space-x-2">
@@ -475,8 +489,11 @@ export function EnhancedIntakeForm({ mode }: EnhancedIntakeFormProps) {
             <Label>Objectif principal</Label>
             <Select
               value={formData.goal}
-              onChange={(e: any) =>
-                setFormData({ ...formData, goal: e.target.value })
+              onChange={(e) =>
+                setFormData({
+                      ...formData,
+                      goal: pickOption(e.target.value, GOALS, formData.goal),
+                    })
               }
             >
             </Select>
@@ -486,8 +503,11 @@ export function EnhancedIntakeForm({ mode }: EnhancedIntakeFormProps) {
             <Label>Délai souhaité</Label>
             <Select
               value={formData.timeframe}
-              onChange={(e: any) =>
-                setFormData({ ...formData, timeframe: e.target.value })
+              onChange={(e) =>
+                setFormData({
+                      ...formData,
+                      timeframe: pickOption(e.target.value, TIMEFRAMES, formData.timeframe),
+                    })
               }
             >
             </Select>

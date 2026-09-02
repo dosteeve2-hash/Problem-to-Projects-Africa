@@ -1,4 +1,3 @@
-// @ts-nocheck
 import type {
   ProjectAnalysis,
   FinancialAnalysis,
@@ -48,15 +47,42 @@ interface EnhancedAnalysisInput {
   targetMonthlyRevenue: number;
 }
 
+/**
+ * Champs de BurkinaFasoDatabase.sectors réellement lus ici. Les secteurs n'ont
+ * pas tous la même forme, d'où les optionnels — et les valeurs de repli à
+ * chaque lecture, qui existaient déjà.
+ */
+interface SectorData {
+  averageStartupCost?: number;
+  averageMonthlyRevenue?: number;
+  averageMonthlyExpenses?: number;
+  averageProfitMargin?: number;
+  opportunities?: string[];
+  challenges?: string[];
+}
+
+/** Résultat commun aux trois modes d'analyse. */
+interface ModeAnalysis {
+  projectTitle: string;
+  sector: string;
+  startupBudget: number;
+  monthlyRevenue: number;
+  monthlyExpenses?: number;
+  profitMargin: number;
+  breakEvenMonths?: number;
+  localOpportunities: string[];
+  localChallenges: string[];
+  administrativeSteps: string[];
+}
+
 export class EnhancedProjectAnalyzer {
   /**
    * Analyse un problème identifié (mode Problème)
    */
-  static analyzeProblemMode(input: ProblemModeInput): any {
+  static analyzeProblemMode(input: ProblemModeInput): ModeAnalysis {
     const db = BURKINA_FASO_DATABASE;
     const sector = this.determineSector(input.problemDescription);
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const sectorData: Record<string, any> = (db.sectors as Record<string, any>)[sector] || db.sectors.agriculture;
+    const sectorData: SectorData = (db.sectors as unknown as Record<string, SectorData>)[sector] || db.sectors.agriculture;
     
     const startupBudget = this.calculateStartupBudget(
       sector,
@@ -80,14 +106,16 @@ export class EnhancedProjectAnalyzer {
   /**
    * Analyse une idée de projet (mode Idée)
    */
-  static analyzeIdeaMode(input: IdeaModeInput): any {
+  static analyzeIdeaMode(input: IdeaModeInput): ModeAnalysis {
     const db = BURKINA_FASO_DATABASE;
     const sector = input.targetSector || "commerce";
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const sectorData: Record<string, any> = (db.sectors as Record<string, any>)[sector] || db.sectors.commerce;
+    const sectorData: SectorData = (db.sectors as unknown as Record<string, SectorData>)[sector] || db.sectors.commerce;
     
     return {
-      projectTitle: input.ideaTitle,
+      // `ideaTitle` est optionnel dans le module réellement résolu
+      // (differentiated-intake-forms.ts) : sans repli, projectTitle pouvait
+      // valoir undefined, ce que le type de retour `any` masquait.
+      projectTitle: input.ideaTitle || `Projet dans le secteur ${sector}`,
       sector,
       startupBudget: input.capitalNeeded || 1000000,
       monthlyRevenue: input.revenueTarget || 500000,
@@ -102,11 +130,10 @@ export class EnhancedProjectAnalyzer {
   /**
    * Analyse les compétences (mode Compétences)
    */
-  static analyzeSkillsMode(input: SkillsModeInput): any {
+  static analyzeSkillsMode(input: SkillsModeInput): ModeAnalysis {
     const db = BURKINA_FASO_DATABASE;
     const sector = this.determineSectorFromSkills(input.primarySkills || input.skills);
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const sectorData: Record<string, any> = (db.sectors as Record<string, any>)[sector] || db.sectors.commerce;
+    const sectorData: SectorData = (db.sectors as unknown as Record<string, SectorData>)[sector] || db.sectors.commerce;
     
     return {
       projectTitle: `Projet: Valoriser vos compétences en ${sector}`,
@@ -196,7 +223,7 @@ export class EnhancedProjectAnalyzer {
   private static calculateStartupBudget(
     sector: string,
     availableCapital: number,
-    sectorData: any
+    sectorData: SectorData
   ): number {
     const estimatedBudget = sectorData.averageStartupCost || 1000000;
     return Math.max(estimatedBudget, availableCapital * 1.5);
@@ -322,7 +349,6 @@ export class EnhancedProjectAnalyzer {
 
     // Générer les projections mensuelles
     const projections = [];
-    let cumulativeProfit = -initialCost;
 
     for (let month = 1; month <= 12; month++) {
       const revenue = monthlyRevenue * month;
@@ -336,10 +362,6 @@ export class EnhancedProjectAnalyzer {
         profit,
         cumulativeProfit: profit,
       });
-
-      if (month === 12) {
-        cumulativeProfit = profit;
-      }
     }
 
     // Générer les scénarios
@@ -385,7 +407,7 @@ export class EnhancedProjectAnalyzer {
    * Génère l'évaluation des risques
    */
   private static generateRiskAssessment(input: EnhancedAnalysisInput): RiskAssessment {
-    const risks = [
+    const risks: RiskAssessment["risks"] = [
       {
         id: "market_risk",
         category: "market" as const,
@@ -433,7 +455,7 @@ export class EnhancedProjectAnalyzer {
       },
     ];
 
-    const opportunities = [
+    const opportunities: RiskAssessment["opportunities"] = [
       {
         id: "market_growth",
         description: "Croissance rapide du marché dans la région",
@@ -798,7 +820,9 @@ export class EnhancedProjectAnalyzer {
    */
   private static calculateFeasibilityScore(
     input: EnhancedAnalysisInput,
-    resources: ResourceRequirements
+    // Reçu mais pas encore pris en compte : le score ne pondère aujourd'hui que
+    // budget, temps et équipe.
+    _resources: ResourceRequirements
   ): number {
     let score = 50;
 
@@ -826,7 +850,8 @@ export class EnhancedProjectAnalyzer {
     input: EnhancedAnalysisInput,
     financial: FinancialAnalysis,
     risks: RiskAssessment,
-    resources: ResourceRequirements
+    // Idem : aucune recommandation ne s'appuie encore sur les ressources.
+    _resources: ResourceRequirements
   ) {
     const recommendations: { priority: "low" | "medium" | "high"; category: string; action: string; impact: string }[] = [];
 

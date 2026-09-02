@@ -1,4 +1,3 @@
-// @ts-nocheck
 /**
  * Formulaires d'Intake Différenciés et Enrichis
  * Chaque mode (Problème, Idée, Compétences) a ses propres questions pertinentes
@@ -353,7 +352,7 @@ export function ProblemModeForm() {
 
           <View>
             <Text className="text-sm font-medium text-foreground mb-2">
-              Années d'expérience
+              Années d’expérience
             </Text>
             <TextInput
               className="bg-background border border-border rounded-lg p-3 text-foreground"
@@ -548,7 +547,7 @@ export function IdeaModeForm() {
 
           <View>
             <Text className="text-sm font-medium text-foreground mb-2">
-              Titre de l'idée *
+              Titre de l’idée *
             </Text>
             <TextInput
               className="bg-background border border-border rounded-lg p-3 text-foreground"
@@ -580,7 +579,7 @@ export function IdeaModeForm() {
 
           <View>
             <Text className="text-sm font-medium text-foreground mb-2">
-              Qu'est-ce qui rend votre idée unique? *
+              Qu’est-ce qui rend votre idée unique? *
             </Text>
             <TextInput
               className="bg-background border border-border rounded-lg p-3 text-foreground"
@@ -852,7 +851,7 @@ export function SkillsModeForm() {
 
           <View>
             <Text className="text-sm font-medium text-foreground mb-2">
-              Années d'expérience
+              Années d’expérience
             </Text>
             <TextInput
               className="bg-background border border-border rounded-lg p-3 text-foreground"
@@ -898,7 +897,7 @@ export function SkillsModeForm() {
 
           <View>
             <Text className="text-sm font-medium text-foreground mb-2">
-              Secteurs d'intérêt *
+              Secteurs d’intérêt *
             </Text>
             <TextInput
               className="bg-background border border-border rounded-lg p-3 text-foreground"

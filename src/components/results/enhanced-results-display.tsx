@@ -18,9 +18,6 @@ import {
   Tooltip,
   Legend,
   ResponsiveContainer,
-  PieChart,
-  Pie,
-  Cell,
 } from "recharts";
 
 interface EnhancedResultsDisplayProps {
@@ -149,7 +146,7 @@ export function EnhancedResultsDisplay({
       {/* Onglets de contenu détaillé */}
       <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
         <TabsList className="grid w-full grid-cols-5">
-          <TabsTrigger value="overview">Vue d'ensemble</TabsTrigger>
+          <TabsTrigger value="overview">Vue d’ensemble</TabsTrigger>
           <TabsTrigger value="financial">Financier</TabsTrigger>
           <TabsTrigger value="roadmap">Roadmap</TabsTrigger>
           <TabsTrigger value="risks">Risques</TabsTrigger>
@@ -311,7 +308,7 @@ export function EnhancedResultsDisplay({
             <h3 className="text-xl font-bold mb-4">Roadmap du Projet</h3>
 
             <div className="space-y-4">
-              {analysis.roadmap.phases.map((phase, idx) => (
+              {analysis.roadmap.phases.map((phase) => (
                 <div key={phase.id} className="border-l-4 border-blue-500 pl-4 pb-4">
                   <div className="flex items-center justify-between mb-2">
                     <h4 className="font-semibold text-lg">{phase.name}</h4>
@@ -516,7 +513,7 @@ export function EnhancedResultsDisplay({
           💾 Sauvegarder ce Projet
         </Button>
         <Button onClick={onRefine} variant="outline" size="lg" className="px-8">
-          🔄 Affiner l'Analyse
+          🔄 Affiner l’Analyse
         </Button>
       </div>
     </div>

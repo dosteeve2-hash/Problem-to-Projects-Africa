@@ -85,10 +85,8 @@ export interface RiskMitigation {
   contingency: string;
 }
 
-/**
- * Génère une transformation complète pour le mode Problème
- */
-export function transformProblem(problemData: {
+/** Entrée du mode Problème. */
+export interface ProblemInput {
   title: string;
   description: string;
   affectedPeople: number;
@@ -98,7 +96,44 @@ export function transformProblem(problemData: {
   availableCapital: number;
   availableTime: number;
   ambitions: string;
-}): TransformationOutput {
+}
+
+/** Entrée du mode Idée. */
+export interface IdeaInput {
+  title: string;
+  description: string;
+  uniqueValue: string;
+  targetMarket: string;
+  competitors: string;
+  startupCapital: number;
+  monthlyRevenue: number;
+  margin: number;
+  pricingStrategy: string;
+}
+
+/** Entrée du mode Compétences. */
+export interface SkillsInput {
+  mainSkills: string;
+  skillLevel: string;
+  certifications: string;
+  experience: number;
+  interestSectors: string;
+  desiredRole: string;
+  projectIdeas: string;
+  network: string;
+}
+
+/**
+ * Vue « tous modes » passée aux générateurs : chaque champ propre à un mode y
+ * est optionnel. Lire un champ absent devient une erreur de compilation au lieu
+ * de renvoyer `undefined` en silence, ce que `data: AnyModeInput` autorisait.
+ */
+type AnyModeInput = Partial<ProblemInput & IdeaInput & SkillsInput>;
+
+/**
+ * Génère une transformation complète pour le mode Problème
+ */
+export function transformProblem(problemData: ProblemInput): TransformationOutput {
   const sector = identifySector(problemData.description);
   const projectTitle = `Solution: ${problemData.title}`;
   const vision = generateVision("problem", problemData);
@@ -119,17 +154,7 @@ export function transformProblem(problemData: {
 /**
  * Génère une transformation complète pour le mode Idée
  */
-export function transformIdea(ideaData: {
-  title: string;
-  description: string;
-  uniqueValue: string;
-  targetMarket: string;
-  competitors: string;
-  startupCapital: number;
-  monthlyRevenue: number;
-  margin: number;
-  pricingStrategy: string;
-}): TransformationOutput {
+export function transformIdea(ideaData: IdeaInput): TransformationOutput {
   const sector = identifySector(ideaData.description);
   const projectTitle = `Projet: ${ideaData.title}`;
   const vision = generateVision("idea", ideaData);
@@ -150,16 +175,7 @@ export function transformIdea(ideaData: {
 /**
  * Génère une transformation complète pour le mode Compétences
  */
-export function transformSkills(skillsData: {
-  mainSkills: string;
-  skillLevel: string;
-  certifications: string;
-  experience: number;
-  interestSectors: string;
-  desiredRole: string;
-  projectIdeas: string;
-  network: string;
-}): TransformationOutput {
+export function transformSkills(skillsData: SkillsInput): TransformationOutput {
   const sector = identifySector(skillsData.interestSectors);
   const projectTitle = `Opportunité: Valoriser vos compétences en ${sector}`;
   const vision = generateVision("skills", skillsData);
@@ -205,7 +221,7 @@ function identifySector(description: string): string {
 /**
  * Génère une vision inspirante pour le projet
  */
-function generateVision(mode: string, data: any): string {
+function generateVision(mode: string, data: AnyModeInput): string {
   const visions: Record<string, string> = {
     problem: `Transformer ce défi en opportunité économique qui crée de la valeur pour ${data.affectedPeople || "votre communauté"} et génère des revenus durables.`,
     idea: `Développer une entreprise viable qui répond à un besoin réel du marché et crée de l'impact économique et social.`,
@@ -218,7 +234,10 @@ function generateVision(mode: string, data: any): string {
 /**
  * Génère une roadmap pour un problème
  */
-function generateRoadmapForProblem(sector: string, data: any): RoadmapPhase[] {
+// Les paramètres sont conservés dans la signature — les appelants les passent
+// et le contenu doit finir par en dépendre — mais ce générateur renvoie pour
+// l'instant le même résultat quels que soient le mode, le secteur et l'entrée.
+function generateRoadmapForProblem(_sector: string, _data: AnyModeInput): RoadmapPhase[] {
   return [
     {
       phase: 1,
@@ -338,7 +357,10 @@ function generateRoadmapForProblem(sector: string, data: any): RoadmapPhase[] {
 /**
  * Génère une roadmap pour une idée
  */
-function generateRoadmapForIdea(sector: string, data: any): RoadmapPhase[] {
+// Les paramètres sont conservés dans la signature — les appelants les passent
+// et le contenu doit finir par en dépendre — mais ce générateur renvoie pour
+// l'instant le même résultat quels que soient le mode, le secteur et l'entrée.
+function generateRoadmapForIdea(_sector: string, _data: AnyModeInput): RoadmapPhase[] {
   return [
     {
       phase: 1,
@@ -458,7 +480,10 @@ function generateRoadmapForIdea(sector: string, data: any): RoadmapPhase[] {
 /**
  * Génère une roadmap pour valoriser des compétences
  */
-function generateRoadmapForSkills(sector: string, data: any): RoadmapPhase[] {
+// Les paramètres sont conservés dans la signature — les appelants les passent
+// et le contenu doit finir par en dépendre — mais ce générateur renvoie pour
+// l'instant le même résultat quels que soient le mode, le secteur et l'entrée.
+function generateRoadmapForSkills(_sector: string, _data: AnyModeInput): RoadmapPhase[] {
   return [
     {
       phase: 1,
@@ -578,7 +603,10 @@ function generateRoadmapForSkills(sector: string, data: any): RoadmapPhase[] {
 /**
  * Génère des flashcards pour l'apprentissage
  */
-function generateFlashcards(mode: string, sector: string, data: any): Flashcard[] {
+// Les paramètres sont conservés dans la signature — les appelants les passent
+// et le contenu doit finir par en dépendre — mais ce générateur renvoie pour
+// l'instant le même résultat quels que soient le mode, le secteur et l'entrée.
+function generateFlashcards(_mode: string, _sector: string, _data: AnyModeInput): Flashcard[] {
   const flashcards: Flashcard[] = [
     {
       id: "market-1",
@@ -659,11 +687,19 @@ Calculez: Point d'équilibre = Coûts fixes / (Prix - Coût variable)`,
   return flashcards;
 }
 
+/** Repères financiers par secteur, en XOF. */
+interface SectorFinancials {
+  startupCost: number;
+  monthlyRevenue: number;
+  monthlyExpenses: number;
+  margin: number;
+}
+
 /**
  * Génère des perspectives financières réalistes
  */
-function generateFinancialPerspective(mode: string, sector: string, data: any): FinancialPerspective {
-  const sectorData: Record<string, any> = {
+function generateFinancialPerspective(mode: string, sector: string, data: AnyModeInput): FinancialPerspective {
+  const sectorData: Record<string, SectorFinancials> = {
     agriculture: {
       startupCost: 1000000,
       monthlyRevenue: 500000,
@@ -773,7 +809,10 @@ function generateFinancialPerspective(mode: string, sector: string, data: any): 
 /**
  * Génère un guide d'action semaine par semaine
  */
-function generateActionGuide(mode: string, data: any): ActionStep[] {
+// Les paramètres sont conservés dans la signature — les appelants les passent
+// et le contenu doit finir par en dépendre — mais ce générateur renvoie pour
+// l'instant le même résultat quels que soient le mode, le secteur et l'entrée.
+function generateActionGuide(_mode: string, _data: AnyModeInput): ActionStep[] {
   return [
     {
       week: 1,
@@ -871,7 +910,10 @@ function generateActionGuide(mode: string, data: any): ActionStep[] {
 /**
  * Génère les risques et stratégies de mitigation
  */
-function generateRisks(mode: string, sector: string, data: any): RiskMitigation[] {
+// Les paramètres sont conservés dans la signature — les appelants les passent
+// et le contenu doit finir par en dépendre — mais ce générateur renvoie pour
+// l'instant le même résultat quels que soient le mode, le secteur et l'entrée.
+function generateRisks(_mode: string, _sector: string, _data: AnyModeInput): RiskMitigation[] {
   return [
     {
       risk: "Manque de capital",
@@ -914,7 +956,10 @@ function generateRisks(mode: string, sector: string, data: any): RiskMitigation[
 /**
  * Génère les opportunités
  */
-function generateOpportunities(mode: string, sector: string, data: any): string[] {
+// Les paramètres sont conservés dans la signature — les appelants les passent
+// et le contenu doit finir par en dépendre — mais ce générateur renvoie pour
+// l'instant le même résultat quels que soient le mode, le secteur et l'entrée.
+function generateOpportunities(_mode: string, _sector: string, _data: AnyModeInput): string[] {
   return [
     "Partenariats avec d'autres entrepreneurs",
     "Expansion géographique à d'autres régions",
@@ -930,7 +975,10 @@ function generateOpportunities(mode: string, sector: string, data: any): string[
 /**
  * Génère les prochaines étapes
  */
-function generateNextSteps(mode: string, data: any): string[] {
+// Les paramètres sont conservés dans la signature — les appelants les passent
+// et le contenu doit finir par en dépendre — mais ce générateur renvoie pour
+// l'instant le même résultat quels que soient le mode, le secteur et l'entrée.
+function generateNextSteps(_mode: string, _data: AnyModeInput): string[] {
   return [
     "1. Télécharger le plan d'action détaillé (8 semaines)",
     "2. Rejoindre la communauté d'entrepreneurs",

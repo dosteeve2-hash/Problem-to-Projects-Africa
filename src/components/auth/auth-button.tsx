@@ -4,19 +4,29 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import type { User } from "@supabase/supabase-js";
 
-import { createSupabaseBrowserClient } from "@/lib/supabase/client";
+import {
+  createSupabaseBrowserClient,
+  isSupabaseConfigured,
+} from "@/lib/supabase/client";
 
 export function AuthButton() {
   const router = useRouter();
   const [user, setUser] = useState<User | null>(null);
-  const [loading, setLoading] = useState(true);
+  const [checked, setChecked] = useState(false);
+
+  // Les variables NEXT_PUBLIC_ sont figées à la compilation : savoir si le
+  // projet est configuré ne demande aucun effet. Sans configuration, il n'y a
+  // rien à attendre — on montre directement l'état déconnecté.
+  const configured = isSupabaseConfigured();
+  const loading = configured && !checked;
 
   useEffect(() => {
     const supabase = createSupabaseBrowserClient();
+    if (!supabase) return;
 
     supabase.auth.getUser().then(({ data }) => {
       setUser(data.user);
-      setLoading(false);
+      setChecked(true);
     });
 
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
@@ -47,6 +57,9 @@ export function AuthButton() {
 
   async function handleLogout() {
     const supabase = createSupabaseBrowserClient();
+    // Ce bouton n'est rendu que si un utilisateur est connecté, ce qui
+    // implique un client Supabase ; la garde ne sert qu'au typage.
+    if (!supabase) return;
     await supabase.auth.signOut();
     router.push("/");
     router.refresh();

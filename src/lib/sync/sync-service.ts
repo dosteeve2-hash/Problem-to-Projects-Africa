@@ -1,6 +1,13 @@
 import type { ProjectAnalysis } from "@/lib/types/project-analysis";
 
 /**
+ * Charges utiles JSON envoyées telles quelles au serveur de synchronisation.
+ * Aucun schéma n'est partagé avec l'app mobile : `unknown` décrit honnêtement
+ * une valeur non vérifiée, là où `any` faisait croire qu'elle l'était.
+ */
+type JsonRecord = Record<string, unknown>;
+
+/**
  * Service de synchronisation pour partager les données entre web et mobile
  */
 export class SyncService {
@@ -57,7 +64,7 @@ export class SyncService {
    */
   static async syncTrackingData(
     projectId: string,
-    trackingData: Record<string, any>
+    trackingData: JsonRecord
   ): Promise<void> {
     try {
       const response = await fetch(`${this.API_BASE}/api/sync/tracking/${projectId}`, {
@@ -83,7 +90,7 @@ export class SyncService {
   /**
    * Récupérer les données de suivi
    */
-  static async fetchTrackingData(projectId: string): Promise<Record<string, any> | null> {
+  static async fetchTrackingData(projectId: string): Promise<JsonRecord | null> {
     try {
       const response = await fetch(`${this.API_BASE}/api/sync/tracking/${projectId}`);
 
@@ -105,7 +112,7 @@ export class SyncService {
    */
   static async syncRecommendations(
     projectId: string,
-    recommendations: Array<any>
+    recommendations: readonly unknown[]
   ): Promise<void> {
     try {
       const response = await fetch(`${this.API_BASE}/api/sync/recommendations/${projectId}`, {

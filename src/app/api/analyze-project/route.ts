@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { EnhancedProjectAnalyzer } from "@/lib/recommendation/enhanced-engine";
+import { errorMessage } from "@/lib/utils";
 
 export async function POST(request: NextRequest) {
   try {
@@ -24,10 +25,10 @@ export async function POST(request: NextRequest) {
       projectId: analysis.projectId,
       analysis,
     });
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error("Erreur lors de l'analyse du projet:", error);
     return NextResponse.json(
-      { error: error.message || "Erreur lors de l'analyse" },
+      { error: errorMessage(error, "Erreur lors de l'analyse") },
       { status: 500 }
     );
   }

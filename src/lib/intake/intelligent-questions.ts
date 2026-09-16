@@ -514,7 +514,7 @@ export function getQuestionsForStep(
  */
 export function validateAnswers(
   questions: IntakeQuestion[],
-  answers: Record<string, any>
+  answers: Record<string, unknown>
 ): { valid: boolean; errors: Record<string, string> } {
   const errors: Record<string, string> = {};
 
@@ -522,18 +522,30 @@ export function validateAnswers(
     const answer = answers[question.id];
     const validation = question.validation;
 
+    // minLength/maxLength s'appliquent aux caractères d'un texte et aux
+    // éléments d'un multiselect. L'ancienne écriture, `answer?.length`, mesurait
+    // bien les deux mais annonçait « caractères » dans les deux cas ; sur un
+    // nombre elle valait `undefined`, et la comparaison était alors toujours
+    // fausse — inapplicable plutôt qu'invalide, ce qui reste le comportement.
+    const measured =
+      typeof answer === "string"
+        ? { size: answer.length, unit: "caractères" }
+        : Array.isArray(answer)
+          ? { size: answer.length, unit: "éléments" }
+          : null;
+
     if (validation?.required && !answer) {
       errors[question.id] = "Ce champ est obligatoire";
       continue;
     }
 
-    if (validation?.minLength && answer?.length < validation.minLength) {
-      errors[question.id] = `Minimum ${validation.minLength} caractères`;
+    if (validation?.minLength && measured && measured.size < validation.minLength) {
+      errors[question.id] = `Minimum ${validation.minLength} ${measured.unit}`;
       continue;
     }
 
-    if (validation?.maxLength && answer?.length > validation.maxLength) {
-      errors[question.id] = `Maximum ${validation.maxLength} caractères`;
+    if (validation?.maxLength && measured && measured.size > validation.maxLength) {
+      errors[question.id] = `Maximum ${validation.maxLength} ${measured.unit}`;
       continue;
     }
 

@@ -37,6 +37,13 @@ export function AuthForm({ mode }: AuthFormProps) {
     startTransition(async () => {
       const supabase = createSupabaseBrowserClient();
 
+      if (!supabase) {
+        setError(
+          "Authentification indisponible : les variables NEXT_PUBLIC_SUPABASE_URL et NEXT_PUBLIC_SUPABASE_ANON_KEY ne sont pas définies.",
+        );
+        return;
+      }
+
       if (mode === "signup") {
         const { error: signUpError } = await supabase.auth.signUp({
           email,

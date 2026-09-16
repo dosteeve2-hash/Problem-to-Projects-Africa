@@ -24,6 +24,13 @@ export function SaveProjectButton({ result, sessionId }: SaveProjectButtonProps)
 
       const supabase = createSupabaseBrowserClient();
 
+      if (!supabase) {
+        setError(
+          "Sauvegarde indisponible : le projet Supabase n'est pas configuré.",
+        );
+        return;
+      }
+
       const {
         data: { user },
       } = await supabase.auth.getUser();

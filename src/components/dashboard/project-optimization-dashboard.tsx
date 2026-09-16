@@ -8,13 +8,6 @@ import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import type { ProjectAnalysis } from "@/lib/types/project-analysis";
 import {
-  LineChart,
-  Line,
-  BarChart,
-  Bar,
-  XAxis,
-  YAxis,
-  CartesianGrid,
   Tooltip,
   Legend,
   ResponsiveContainer,
@@ -32,7 +25,9 @@ interface ProjectOptimizationDashboardProps {
 
 export function ProjectOptimizationDashboard({
   project,
-  onUpdate,
+  // Déclarée dans l'API du composant mais encore jamais appelée : le tableau
+  // de bord n'a pas de chemin d'écriture vers le projet.
+  onUpdate: _onUpdate,
 }: ProjectOptimizationDashboardProps) {
   const [activeTab, setActiveTab] = useState("overview");
   const [trackingData, setTrackingData] = useState({
@@ -140,7 +135,7 @@ export function ProjectOptimizationDashboard({
       {/* Onglets */}
       <Tabs value={activeTab} onValueChange={setActiveTab}>
         <TabsList className="grid w-full grid-cols-4">
-          <TabsTrigger value="overview">Vue d'ensemble</TabsTrigger>
+          <TabsTrigger value="overview">Vue d’ensemble</TabsTrigger>
           <TabsTrigger value="tracking">Suivi</TabsTrigger>
           <TabsTrigger value="optimization">Optimisation</TabsTrigger>
           <TabsTrigger value="alerts">Alertes</TabsTrigger>
@@ -298,7 +293,7 @@ export function ProjectOptimizationDashboard({
               </div>
 
               <div>
-                <label className="block text-sm font-semibold mb-2">Taille de l'Équipe</label>
+                <label className="block text-sm font-semibold mb-2">Taille de l’Équipe</label>
                 <input
                   type="number"
                   value={trackingData.teamSize}
@@ -337,7 +332,7 @@ export function ProjectOptimizationDashboard({
         {/* Optimisation */}
         <TabsContent value="optimization" className="space-y-4">
           <Card className="p-6">
-            <h3 className="text-lg font-bold mb-4">Recommandations d'Optimisation</h3>
+            <h3 className="text-lg font-bold mb-4">Recommandations d’Optimisation</h3>
 
             <div className="space-y-4">
               {/* Recommandations basées sur les données */}

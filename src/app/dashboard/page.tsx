@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { redirect } from "next/navigation";
 
 import { SiteHeader } from "@/components/marketing/site-header";
 import { SiteFooter } from "@/components/marketing/site-footer";
@@ -8,6 +9,10 @@ import { createSupabaseServerClient } from "@/lib/supabase/server";
 export default async function DashboardPage() {
   const supabase = await createSupabaseServerClient();
   const { data: { user } } = await supabase.auth.getUser();
+
+  // Le middleware protège déjà /dashboard, mais il se court-circuite quand les
+  // variables Supabase manquent. Sans ce garde, `user!.id` plantait la page.
+  if (!user) redirect("/login?redirect=/dashboard");
 
   // Fetch user's recommendation sessions with their recommendations
   const { data: sessions } = await supabase
@@ -30,7 +35,7 @@ export default async function DashboardPage() {
         next_step
       )
     `)
-    .eq("user_id", user!.id)
+    .eq("user_id", user.id)
     .order("created_at", { ascending: false })
     .limit(20);
 
@@ -71,7 +76,7 @@ export default async function DashboardPage() {
             </div>
           ) : (
             <div className="grid gap-8">
-              {sessions.map((session: any) => {
+              {sessions.map((session) => {
                 const date = new Date(session.created_at).toLocaleDateString(
                   "fr-FR",
                   {

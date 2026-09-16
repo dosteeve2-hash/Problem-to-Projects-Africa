@@ -1,7 +1,7 @@
 "use client";
 
 import { useSearchParams, useRouter } from "next/navigation";
-import { useEffect, useState, Suspense } from "react";
+import { useMemo, Suspense } from "react";
 import { EnhancedResultsDisplay } from "@/components/results/enhanced-results-display";
 import type { ProjectAnalysis } from "@/lib/types/project-analysis";
 import { Loader2 } from "lucide-react";
@@ -9,28 +9,26 @@ import { Loader2 } from "lucide-react";
 function EnhancedResultsContent() {
   const searchParams = useSearchParams();
   const router = useRouter();
-  const [analysis, setAnalysis] = useState<ProjectAnalysis | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  // L'analyse vient entièrement de l'URL et son parsing est synchrone : il n'y
+  // a rien à synchroniser dans un effet, et plus d'état « loading » qui ne
+  // valait `true` que le temps d'un rendu. Le chargement par `projectId` reste
+  // à écrire ; il faudra alors un état, mais un vrai, avec une requête.
+  const analysisData = searchParams.get("data");
 
-  useEffect(() => {
-    const projectId = searchParams.get("projectId");
-    const analysisData = searchParams.get("data");
-
-    if (analysisData) {
-      try {
-        const parsed = JSON.parse(decodeURIComponent(analysisData));
-        setAnalysis(parsed);
-      } catch {
-        setError("Erreur lors du chargement de l'analyse");
-      }
-    } else if (projectId) {
-      // Charger depuis la base de données
-      // fetch(`/api/projects/${projectId}`)...
+  const { analysis, error } = useMemo<{
+    analysis: ProjectAnalysis | null;
+    error: string | null;
+  }>(() => {
+    if (!analysisData) return { analysis: null, error: null };
+    try {
+      return {
+        analysis: JSON.parse(decodeURIComponent(analysisData)) as ProjectAnalysis,
+        error: null,
+      };
+    } catch {
+      return { analysis: null, error: "Erreur lors du chargement de l'analyse" };
     }
-
-    setLoading(false);
-  }, [searchParams]);
+  }, [analysisData]);
 
   const handleSave = async () => {
     if (!analysis) return;
@@ -56,17 +54,6 @@ function EnhancedResultsContent() {
   const handleRefine = () => {
     router.push("/intake-enhanced");
   };
-
-  if (loading) {
-    return (
-      <div className="flex items-center justify-center min-h-screen">
-        <div className="text-center">
-          <Loader2 className="w-12 h-12 animate-spin mx-auto mb-4" />
-          <p>Chargement de l&apos;analyse...</p>
-        </div>
-      </div>
-    );
-  }
 
   if (error || !analysis) {
     return (

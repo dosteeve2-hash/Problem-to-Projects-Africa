@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { errorMessage } from "@/lib/utils";
 
 /**
  * Routes API pour la synchronisation web-mobile
@@ -30,19 +31,18 @@ export async function GET(request: NextRequest) {
 
 export async function POST(request: NextRequest) {
   try {
-    const body = await request.json();
-
-    // Simuler la synchronisation
-    // En production, cela sauvegarderait dans une base de données
+    // Le corps est consommé pour valider que la requête est bien du JSON,
+    // mais rien n'est encore persisté : cet endpoint est un bouchon.
+    await request.json();
 
     return NextResponse.json({
       success: true,
       message: "Données synchronisées avec succès",
       timestamp: new Date().toISOString(),
     });
-  } catch (error: any) {
+  } catch (error: unknown) {
     return NextResponse.json(
-      { error: error.message || "Erreur lors de la synchronisation" },
+      { error: errorMessage(error, "Erreur lors de la synchronisation") },
       { status: 500 }
     );
   }

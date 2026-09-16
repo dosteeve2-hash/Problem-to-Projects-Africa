@@ -1,5 +1,13 @@
 import { createClient } from "@supabase/supabase-js";
 
+/**
+ * Sac de colonnes envoyé à Supabase. Le client n'est pas généré à partir du
+ * schéma : faute de types de base de données, `unknown` est la description
+ * honnête d'une valeur de colonne — elle reste vérifiée à l'usage, contrairement
+ * à `any`.
+ */
+type ColumnValues = Record<string, unknown>;
+
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || "";
 const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || "";
 
@@ -12,7 +20,7 @@ if (!supabaseUrl || !supabaseKey) {
 export const supabase = createClient(supabaseUrl, supabaseKey);
 
 // Auth helpers
-export async function signUp(email: string, password: string, userData: any) {
+export async function signUp(email: string, password: string, userData: ColumnValues) {
   const { data, error } = await supabase.auth.signUp({
     email,
     password,
@@ -50,7 +58,7 @@ export async function getCurrentUser() {
   return user;
 }
 
-export async function updateProfile(userId: string, updates: any) {
+export async function updateProfile(userId: string, updates: ColumnValues) {
   const { data, error } = await supabase
     .from("profiles")
     .update(updates)
@@ -62,7 +70,7 @@ export async function updateProfile(userId: string, updates: any) {
 }
 
 // Project helpers
-export async function createProject(userId: string, projectData: any) {
+export async function createProject(userId: string, projectData: ColumnValues) {
   const { data, error } = await supabase
     .from("projects")
     .insert([
@@ -100,7 +108,7 @@ export async function getProject(projectId: string) {
   return data;
 }
 
-export async function updateProject(projectId: string, updates: any) {
+export async function updateProject(projectId: string, updates: ColumnValues) {
   const { data, error } = await supabase
     .from("projects")
     .update(updates)
@@ -118,7 +126,7 @@ export async function deleteProject(projectId: string) {
 }
 
 // Analysis helpers
-export async function saveAnalysis(projectId: string, analysisData: any) {
+export async function saveAnalysis(projectId: string, analysisData: ColumnValues) {
   const { data, error } = await supabase
     .from("analyses")
     .insert([

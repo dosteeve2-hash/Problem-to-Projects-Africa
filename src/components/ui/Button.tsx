@@ -15,11 +15,11 @@ type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
 
 const variantClasses: Record<Variant, string> = {
   primary:
-    "bg-[#f0a832] hover:bg-[#f7c060] text-[#070e1f] font-bold shadow-lg shadow-[#f0a832]/25 hover:shadow-[#f7c060]/30",
+    "bg-[#D4AF37] hover:bg-[#F5D67A] text-[#0A1628] font-bold shadow-lg shadow-[#D4AF37]/25 hover:shadow-[#F5D67A]/30",
   secondary:
-    "bg-[#111d34] hover:bg-[#0c1528] text-[#f5f0e8] border border-[#1f3054] hover:border-[#f0a832]/40",
+    "bg-[#142b52] hover:bg-[#0e1f3d] text-[#f5f0e8] border border-[#1f3054] hover:border-[#D4AF37]/40",
   ghost:
-    "bg-transparent hover:bg-[#111d34] text-[#9ba8c4] hover:text-[#f5f0e8] border border-[#1f3054] hover:border-[#f0a832]/40",
+    "bg-transparent hover:bg-[#142b52] text-[#9ba8c4] hover:text-[#f5f0e8] border border-[#1f3054] hover:border-[#D4AF37]/40",
   danger: "bg-[#ef4444] hover:bg-[#dc2626] text-[#f5f0e8]",
 }
 
@@ -49,7 +49,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         disabled={disabled || loading}
         className={[
           "inline-flex items-center justify-center gap-2 rounded-xl font-semibold transition-all duration-200",
-          "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#f0a832] focus-visible:ring-offset-2 focus-visible:ring-offset-[#070e1f]",
+          "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D4AF37] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0A1628]",
           "disabled:opacity-50 disabled:cursor-not-allowed",
           variantClasses[variant],
           sizeClasses[size],

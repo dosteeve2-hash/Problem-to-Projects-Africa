@@ -27,15 +27,15 @@ const pillars = [
     icon: MapPin,
     title: "Connaissance locale",
     desc: "9 pays, leurs villes, leurs infrastructures, leurs marchés, leur culture entrepreneuriale. P2P ne t'envoie pas vers des modèles qui ne marchent pas ici.",
-    color: "#f0a832",
-    colorHex: "#f0a832",
+    color: "#D4AF37",
+    colorHex: "#D4AF37",
   },
   {
     icon: Cpu,
     title: "IA contextuelle",
     desc: "Claude analyse simultanément tes compétences, ton contexte pays, les secteurs porteurs locaux et les contraintes réelles pour générer un projet cohérent.",
     color: "var(--cyan)",
-    colorHex: "#2dd4ff",
+    colorHex: "#00BCD4",
   },
   {
     icon: Zap,
@@ -63,7 +63,7 @@ export function MethodSection() {
         className="absolute inset-0 pointer-events-none -z-10"
         style={{
           background:
-            "radial-gradient(ellipse 70% 40% at 50% 100%, rgba(45,212,255,0.04) 0%, transparent 70%)",
+            "radial-gradient(ellipse 70% 40% at 50% 100%, rgba(0,188,212,0.04) 0%, transparent 70%)",
         }}
       />
 
@@ -73,8 +73,8 @@ export function MethodSection() {
           <div
             className="inline-flex items-center gap-2 rounded-full px-4 py-1.5 mb-4"
             style={{
-              border: "1px solid rgba(45,212,255,0.25)",
-              background: "rgba(45,212,255,0.07)",
+              border: "1px solid rgba(0,188,212,0.25)",
+              background: "rgba(0,188,212,0.07)",
             }}
           >
             <span
@@ -170,7 +170,7 @@ export function MethodSection() {
             <div
               className="px-6 py-4 text-center text-sm font-semibold"
               style={{
-                background: "rgba(240,168,50,0.08)",
+                background: "rgba(212,175,55,0.08)",
                 borderBottom: "1px solid var(--border2)",
                 color: "var(--gold)",
                 fontFamily: "var(--font-mono)",
@@ -216,11 +216,11 @@ export function MethodSection() {
               {/* P2P side */}
               <div
                 className="flex items-start gap-3 px-6 py-5"
-                style={{ background: "rgba(240,168,50,0.02)" }}
+                style={{ background: "rgba(212,175,55,0.02)" }}
               >
                 <div
                   className="mt-0.5 shrink-0 rounded-full p-1"
-                  style={{ background: "rgba(240,168,50,0.15)" }}
+                  style={{ background: "rgba(212,175,55,0.15)" }}
                 >
                   <Check className="h-3.5 w-3.5" style={{ color: "var(--gold)" }} />
                 </div>

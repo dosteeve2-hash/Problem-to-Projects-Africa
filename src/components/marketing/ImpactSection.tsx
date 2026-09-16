@@ -12,7 +12,7 @@ const STATS = [
     sublabel: "idées transformées en plans concrets",
     icon: TrendingUp,
     colorVar: "var(--gold)",
-    colorHex: "#f0a832",
+    colorHex: "#D4AF37",
   },
   {
     value: 9,
@@ -21,7 +21,7 @@ const STATS = [
     sublabel: "et en croissance chaque mois",
     icon: Globe,
     colorVar: "var(--cyan)",
-    colorHex: "#2dd4ff",
+    colorHex: "#00BCD4",
   },
   {
     value: 30,
@@ -39,7 +39,7 @@ const STATS = [
     sublabel: "toujours accessible, sans compte requis",
     icon: Heart,
     colorVar: "var(--gold)",
-    colorHex: "#f0a832",
+    colorHex: "#D4AF37",
   },
 ] as const
 
@@ -108,7 +108,7 @@ export function ImpactSection() {
         className="absolute inset-0 pointer-events-none -z-10"
         style={{
           background:
-            "radial-gradient(ellipse 60% 50% at 50% 50%, rgba(240,168,50,0.04) 0%, transparent 70%)",
+            "radial-gradient(ellipse 60% 50% at 50% 50%, rgba(212,175,55,0.04) 0%, transparent 70%)",
         }}
       />
 
@@ -118,8 +118,8 @@ export function ImpactSection() {
           <div
             className="inline-flex items-center gap-2 rounded-full px-4 py-1.5 mb-4"
             style={{
-              border: "1px solid rgba(240,168,50,0.25)",
-              background: "rgba(240,168,50,0.08)",
+              border: "1px solid rgba(212,175,55,0.25)",
+              background: "rgba(212,175,55,0.08)",
             }}
           >
             <span

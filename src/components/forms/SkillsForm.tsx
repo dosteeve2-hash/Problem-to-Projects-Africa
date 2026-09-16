@@ -161,7 +161,7 @@ export function SkillsForm() {
                     className="rounded-xl border px-3 py-2.5 text-sm font-medium transition-all"
                     style={
                       userLevel === level
-                        ? { borderColor: "var(--gold)", background: "rgba(240,168,50,0.1)", color: "var(--text)" }
+                        ? { borderColor: "var(--gold)", background: "rgba(212,175,55,0.1)", color: "var(--text)" }
                         : { borderColor: "var(--border2)", color: "var(--text2)" }
                     }
                   >
@@ -203,7 +203,7 @@ export function SkillsForm() {
                   <span
                     key={skill}
                     className="inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-medium"
-                    style={{ background: "rgba(240,168,50,0.1)", border: "1px solid rgba(240,168,50,0.2)", color: "var(--gold2)" }}
+                    style={{ background: "rgba(212,175,55,0.1)", border: "1px solid rgba(212,175,55,0.2)", color: "var(--gold2)" }}
                   >
                     {skill}
                     <button onClick={() => removeSkill(skill)} style={{ color: "var(--gold)" }}>

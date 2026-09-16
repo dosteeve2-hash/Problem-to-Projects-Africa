@@ -23,7 +23,7 @@ export default function AboutPage() {
         <div className="space-y-8">
           <Card>
             <div className="flex items-start gap-4">
-              <div className="rounded-xl p-3 shrink-0" style={{ background: "rgba(240,168,50,0.1)", border: "1px solid rgba(240,168,50,0.2)" }}>
+              <div className="rounded-xl p-3 shrink-0" style={{ background: "rgba(212,175,55,0.1)", border: "1px solid rgba(212,175,55,0.2)" }}>
                 <Target className="h-6 w-6" style={{ color: "var(--gold)" }} />
               </div>
               <div>
@@ -40,7 +40,7 @@ export default function AboutPage() {
 
           <Card>
             <div className="flex items-start gap-4">
-              <div className="rounded-xl p-3 shrink-0" style={{ background: "rgba(45,212,255,0.1)", border: "1px solid rgba(45,212,255,0.2)" }}>
+              <div className="rounded-xl p-3 shrink-0" style={{ background: "rgba(0,188,212,0.1)", border: "1px solid rgba(0,188,212,0.2)" }}>
                 <Globe className="h-6 w-6" style={{ color: "var(--cyan)" }} />
               </div>
               <div>
@@ -89,7 +89,7 @@ export default function AboutPage() {
 
           <Card>
             <div className="flex items-start gap-4">
-              <div className="rounded-xl p-3 shrink-0" style={{ background: "rgba(240,168,50,0.1)", border: "1px solid rgba(240,168,50,0.2)" }}>
+              <div className="rounded-xl p-3 shrink-0" style={{ background: "rgba(212,175,55,0.1)", border: "1px solid rgba(212,175,55,0.2)" }}>
                 <Zap className="h-6 w-6" style={{ color: "var(--gold)" }} />
               </div>
               <div>

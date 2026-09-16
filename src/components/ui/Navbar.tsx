@@ -36,7 +36,7 @@ export function Navbar({ userEmail }: NavbarProps) {
         borderBottom: "1px solid var(--border)",
         background: "rgba(12,21,40,0.90)",
         backdropFilter: "blur(20px)",
-        boxShadow: "0 8px 32px rgba(7,14,31,0.5)",
+        boxShadow: "0 8px 32px rgba(10,22,40,0.5)",
       } : {
         background: "transparent",
       }}
@@ -112,7 +112,7 @@ export function Navbar({ userEmail }: NavbarProps) {
                 <Link href="/start">
                   <button
                     className="rounded-xl px-5 py-2 text-xs font-bold transition-all hover:scale-105 cursor-pointer"
-                    style={{ background: "var(--gold)", color: "var(--bg)", boxShadow: "0 4px 20px rgba(240,168,50,0.25)" }}
+                    style={{ background: "var(--gold)", color: "var(--bg)", boxShadow: "0 4px 20px rgba(212,175,55,0.25)" }}
                   >
                     Commencer →
                   </button>

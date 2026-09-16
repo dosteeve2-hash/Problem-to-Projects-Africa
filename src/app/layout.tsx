@@ -53,7 +53,7 @@ export default async function RootLayout({
       lang="fr"
       className={`h-full ${playfair.variable} ${outfit.variable} ${jetbrains.variable}`}
     >
-      <body className="min-h-full flex flex-col bg-[#070e1f] text-[#f5f0e8] antialiased">
+      <body className="min-h-full flex flex-col bg-[#0A1628] text-[#f5f0e8] antialiased">
         <Navbar userEmail={user?.email ?? null} />
         <main className="flex-1">{children}</main>
         <Footer />

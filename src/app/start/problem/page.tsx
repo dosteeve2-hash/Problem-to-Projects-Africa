@@ -7,7 +7,7 @@ export default function ProblemPage() {
         <div className="mb-8">
           <div
             className="inline-flex items-center gap-2 rounded-full px-3 py-1 mb-4"
-            style={{ background: "rgba(240,168,50,0.1)", border: "1px solid rgba(240,168,50,0.2)" }}
+            style={{ background: "rgba(212,175,55,0.1)", border: "1px solid rgba(212,175,55,0.2)" }}
           >
             <span
               className="text-xs font-medium"

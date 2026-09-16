@@ -30,7 +30,7 @@ const MODES = [
     title: "J'ai observé un problème",
     subtitle: "dans mon entourage ou ma communauté",
     accent: "var(--gold)",
-    accentHex: "#f0a832",
+    accentHex: "#D4AF37",
   },
   {
     href: "/start/idea",
@@ -39,7 +39,7 @@ const MODES = [
     title: "J'ai une idée",
     subtitle: "et je veux la valider et l'exécuter",
     accent: "var(--cyan)",
-    accentHex: "#2dd4ff",
+    accentHex: "#00BCD4",
   },
   {
     href: "/start/skills",
@@ -78,11 +78,11 @@ export function Hero() {
       <div className="absolute inset-0 -z-10 pointer-events-none">
         <div
           className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[700px] h-[500px] rounded-full blur-[120px]"
-          style={{ background: "rgba(240,168,50,0.07)" }}
+          style={{ background: "rgba(212,175,55,0.07)" }}
         />
         <div
           className="absolute bottom-1/3 left-1/4 w-[500px] h-[400px] rounded-full blur-[100px]"
-          style={{ background: "rgba(45,212,255,0.04)" }}
+          style={{ background: "rgba(0,188,212,0.04)" }}
         />
         <div
           className="absolute top-2/3 right-1/4 w-[350px] h-[250px] rounded-full blur-[80px]"
@@ -113,7 +113,7 @@ export function Hero() {
           initial="hidden"
           animate="show"
           className="mb-8 inline-flex items-center gap-2 rounded-full px-4 py-1.5"
-          style={{ border: "1px solid rgba(240,168,50,0.25)", background: "rgba(240,168,50,0.08)" }}
+          style={{ border: "1px solid rgba(212,175,55,0.25)", background: "rgba(212,175,55,0.08)" }}
         >
           <Sparkles className="h-3.5 w-3.5" style={{ color: "var(--gold)" }} />
           <span
@@ -238,7 +238,7 @@ export function Hero() {
               style={{
                 background: "var(--gold)",
                 color: "var(--bg)",
-                boxShadow: "0 8px 32px rgba(240,168,50,0.25)",
+                boxShadow: "0 8px 32px rgba(212,175,55,0.25)",
               }}
             >
               Commence maintenant

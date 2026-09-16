@@ -15,15 +15,15 @@ const levelConfig = {
   },
   medium: {
     label: "Impact modéré",
-    color: "text-[#2dd4ff]",
-    bg: "bg-[#2dd4ff]/10 border-[#2dd4ff]/20",
-    dot: "bg-[#2dd4ff]",
+    color: "text-[#00BCD4]",
+    bg: "bg-[#00BCD4]/10 border-[#00BCD4]/20",
+    dot: "bg-[#00BCD4]",
   },
   high: {
     label: "Fort impact",
-    color: "text-[#f0a832]",
-    bg: "bg-[#f0a832]/10 border-[#f0a832]/20",
-    dot: "bg-[#f0a832]",
+    color: "text-[#D4AF37]",
+    bg: "bg-[#D4AF37]/10 border-[#D4AF37]/20",
+    dot: "bg-[#D4AF37]",
   },
 }
 

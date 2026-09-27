@@ -30,6 +30,17 @@ function EnhancedResultsContent() {
     }
   }, [analysisData]);
 
+  // ⚠️ Mesuré le 2026-09-27 : cette page est orpheline et ses deux actions ne
+  // mènent nulle part.
+  //   — aucun fichier de `src/` ne pointe vers `/results-enhanced` : on n'y
+  //     arrive qu'en tapant l'URL à la main, avec l'analyse dans `?data=` ;
+  //   — `handleSave` poste vers `/api/projects/save`, qui n'existe pas (les
+  //     seules routes sont `/api/recommend`, `/api/analyze-project`, `/api/sync`
+  //     et `/auth/callback`) : le 404 remonte dans l'`alert` d'erreur ;
+  //   — `handleRefine` pousse vers `/intake-enhanced`, qui n'existe pas non plus
+  //     (le dossier est `app/intake`).
+  // Le parcours qui marche est l'autre : `/intake` → `/api/recommend` →
+  // `/results`, avec persistance Supabase quand l'utilisateur est connecté.
   const handleSave = async () => {
     if (!analysis) return;
 

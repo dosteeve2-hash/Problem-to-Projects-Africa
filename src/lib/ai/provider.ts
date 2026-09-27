@@ -1,6 +1,25 @@
 import type { RecommendationInput, RecommendationResult } from "@/lib/types/recommendation";
 
 /**
+ * ⚠️ Mesuré le 2026-09-27 : rien dans `src/` n'importe `@/lib/ai`.
+ *
+ * La recommandation servie par `/api/recommend` est entièrement déterministe —
+ * `lib/recommendation/engine.ts` choisit dans le catalogue de 709 lignes. Aucun
+ * appel à un modèle n'est fait, donc aucun crédit n'est dépensé : c'est
+ * conforme à la doctrine « coût quasi nul », et ce n'est pas un défaut.
+ *
+ * Ce qui serait un défaut, c'est de brancher ce fichier sans ce qui va avec. Le
+ * jour où un `registerProvider` réel est appelé depuis une route, deux règles de
+ * `CLAUDE.md` deviennent obligatoires dans la même PR :
+ *   — un rate limit sur la route (max 20 requêtes / utilisateur / heure) ;
+ *   — l'entrée utilisateur passée en délimiteurs XML
+ *     (`<user_input>` + userText + `</user_input>`), jamais concaténée dans le
+ *     system prompt.
+ * Aucune des deux n'existe aujourd'hui dans ce dépôt, parce qu'aucune n'est
+ * encore nécessaire.
+ */
+
+/**
  * AI provider interface for generating recommendations.
  * Implementations can wrap Claude, Ollama, OpenAI, or any other provider.
  */

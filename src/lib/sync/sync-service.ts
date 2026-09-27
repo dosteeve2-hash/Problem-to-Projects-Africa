@@ -8,7 +8,25 @@ import type { ProjectAnalysis } from "@/lib/types/project-analysis";
 type JsonRecord = Record<string, unknown>;
 
 /**
- * Service de synchronisation pour partager les données entre web et mobile
+ * Service de synchronisation pour partager les données entre web et mobile.
+ *
+ * ⚠️ Mesuré le 2026-09-27 : ce service ne synchronise rien, et rien ne l'appelle.
+ *
+ * 1. Aucun fichier de `src/` n'importe `SyncService`. Il n'est donc pas « la
+ *    synchronisation du produit » : c'est du code mort.
+ * 2. Les neuf routes qu'il appelle (`/api/sync/projects`,
+ *    `/api/sync/tracking/:id`, `/api/sync/recommendations/:id`,
+ *    `/api/sync/users/:userId/projects`, les exports PDF et le partage)
+ *    n'existent pas. La seule route existante est `/api/sync`, sans segment
+ *    imbriqué, et son POST se décrit lui-même comme un bouchon : il répond
+ *    « Données synchronisées avec succès » sans rien persister.
+ * 3. `API_BASE` retombe sur `http://localhost:3000` : en production, sans
+ *    `NEXT_PUBLIC_API_URL`, un navigateur appellerait la machine du visiteur.
+ *
+ * Ce commentaire existe pour qu'on ne relise pas ces 200 lignes en croyant que
+ * l'offline-first du produit est fait. Il est fait dans l'intention, pas dans le
+ * code. Le jour où on l'écrit vraiment, ce sont les routes qui manquent d'abord,
+ * pas ce fichier.
  */
 export class SyncService {
   private static readonly API_BASE = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000";
